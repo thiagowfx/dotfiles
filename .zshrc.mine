@@ -21,7 +21,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # options
-prompt suse
+# prompt suse
 setopt appendhistory
 setopt autocd
 setopt beep
