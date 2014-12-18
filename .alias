@@ -9,6 +9,7 @@ export HISTCONTROL=ignoreboth
 export PATH="$HOME/bin:$PATH"
 export RAMDISK="$HOME/Ramdisk"
 [[ $TMUX = "" ]] && export TERM="rxvt-256color"
+export PAGER="vimpager"
 export VISUAL="vim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
