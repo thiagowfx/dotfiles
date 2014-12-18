@@ -57,7 +57,7 @@ vnoremap ? ?\v
 " user settings
 set autoread autowrite
 set backspace=indent,eol,start
-set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8 termencoding=utf-8
+set encoding=utf-8 fileencodings=utf-8 termencoding=utf-8
 set nofoldenable foldmethod=indent
 set history=10000 laststatus=2 modelines=0
 set ignorecase infercase smartcase
