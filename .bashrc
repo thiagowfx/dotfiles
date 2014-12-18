@@ -3,16 +3,19 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f $HOME/.aliases ]] && source $HOME/.aliases
+# Our aliases
+[[ -f $HOME/.alias ]] && source $HOME/.alias
 
 # System bashrc
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion && complete -cf sudo
+
+# Command-not-found for Arch Linux / pacman
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
 # prompt
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
 git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
 PS1="\[\e[0;32m\]\$(git_branch)\[\e[m\]$PS1"
 
 # options

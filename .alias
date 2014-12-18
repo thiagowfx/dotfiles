@@ -1,13 +1,8 @@
 # -*- shell-script -*-
 
-alias en="emacsclient -a '' -nw $HOME/_org/next.org"
-
 # environment variables
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
-[[ -f $HOME/_scripts/packager ]] && export DEBFULLNAME="$($HOME/_scripts/packager name)"
-[[ -f $HOME/_scripts/packager ]] && export DEBEMAIL="$($HOME/_scripts/packager mail)"
 export EDITOR="vim"
-export GOPATH="$HOME/.go"
+export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
@@ -22,9 +17,8 @@ export WINEPREFIX="$HOME/.wine"
 
 alias chmod="chmod -v"
 alias chown="chown -v"
-which colordiff &>/dev/null && alias colordiff="colordiff -uN"
-which colordiff &>/dev/null && alias diff="colordiff -uN"
-which cower     &>/dev/null && alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
+which colordiff &>/dev/null && alias colordiff="colordiff -uN" && alias diff="colordiff -uN"
+which cower &>/dev/null && alias cower="cower --color=always --sort=votes --target=$HOME/aur"
 alias cp="cp -v"
 alias ctest="ctest -V"
 alias curl="curl -v -L"
@@ -50,7 +44,6 @@ which pacaur &>/dev/null && alias pacaur="pacaur --noconfirm --noedit"
 which pacman &>/dev/null && alias pacma="pacman"
 alias pgrep="pgrep -afl"
 alias pingg="ping google.com"
-alias pythonn="python -i -c 'from math import *'"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
 alias sl="ls"
@@ -61,13 +54,11 @@ alias strace="strace -t"
 alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias docker-t-pa="sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${RAMDISK}/out.mpg"
-alias jekyll-t-serve="jekyll serve --baseurl='' --watch"
 alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 alias qemu-t-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom"
 alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
-alias waur="pacaur -Syua --noedit"
 alias world="sudo pacman -Syu"
 alias world-t-apt="sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
 alias world-t-portage='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
@@ -93,7 +84,7 @@ EOF
     adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
 }
 
-# chroot gentoo style
+# chroot: gentoo style
 gentoo-chroot() {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
     [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
@@ -104,8 +95,7 @@ gentoo-chroot() {
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 
-# gitignore
-# Example usage: gi emacs,vim,c
+# gitignore - example usage: gi emacs,vim,c
 gi() { curl "http://www.gitignore.io/api/$@"; }
 
 gocd() { cd `go list -f '{{.Dir}}' $1`; }
