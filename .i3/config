@@ -32,7 +32,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start a text editor
-bindsym $mod+t exec emacsclient -c
+bindsym $mod+t exec emacsclient -c -a ""
 bindsym $mod+Shift+t exec gvim
 
 # start a file manager
