@@ -4,9 +4,10 @@
 #  people. So here goes: © 2012 Stefan Breunig
 #  stefan+measure-net-speed@mathphys.fsk.uni-heidelberg.de)
 
+BLOCK_INSTANCE="$@"
+
 if [ -z "$BLOCK_INSTANCE" ]
   then echo 'please give $BLOCK_INSTANCE'
-  exit 1
 fi
 
 if ! [ -e "/sys/class/net/${BLOCK_INSTANCE}/operstate" ] || ! [ "`cat /sys/class/net/${BLOCK_INSTANCE}/operstate`" = "up" ]
