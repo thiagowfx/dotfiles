@@ -187,11 +187,18 @@ for_window [window_role="pop-up"] floating enable
 
 # custom hotkeys
 bindsym Print exec scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/Ramdisk/' && notify-send 'Took a SS'
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 -time 0
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 -time 0
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 -time 0
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
+
+# For AlsaMixer
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 2dB+ unmute && pkill -RTMIN+1 '^i3blocks'
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 2dB- unmute && pkill -RTMIN+1 '^i3blocks'
+
+# For PulseAudio
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5% && pkill -RTMIN+1 '^i3blocks'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% && pkill -RTMIN+1 '^i3blocks'
+ 
+bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+1 '^i3blocks'
 bindsym Shift+XF86AudioLowerVolume exec playerctl previous
 bindsym Shift+XF86AudioRaiseVolume exec playerctl next
 bindsym Shift+XF86AudioMute exec playerctl play-pause

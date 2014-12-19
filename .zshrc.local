@@ -33,3 +33,4 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt nomatch
 setopt printexitvalue
+export HIST_IGNORE_SPACE
