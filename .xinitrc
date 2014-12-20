@@ -10,13 +10,15 @@ fi
 
 [[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
 
-case $1 in
-  awesome|awesomewm ) exec awesome;;
+WM=${1:-i3}
+
+case $WM in
+  awesome           ) exec awesome;;
   bspwm             ) exec bspwm;;
   catwm             ) exec catwm;;
   cinnamon          ) exec cinnamon-session;;
   dwm               ) exec dwm;;
-  enlightenment     ) exec enlightenment_start;;
+  e17               ) exec enlightenment_start;;
   ede               ) exec startede;;
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
@@ -26,7 +28,7 @@ case $1 in
   kde               ) exec startkde;;
   lxde              ) exec startlxde;;
   mate              ) exec mate-session;;
-  monster|monsterwm ) exec monsterwm;;
+  monster           ) exec monsterwm;;
   notion            ) exec notion;;
   openbox           ) exec openbox-session;;
   unity             ) exec unity;;
