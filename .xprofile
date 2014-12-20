@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export TERMINAL="terminator"
-
 [[ -f "/home/thiago/.fehbg" ]] && sh "/home/thiago/.fehbg" &
 
 # Redshift
