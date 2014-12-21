@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[[ -f "/home/thiago/.fehbg" ]] && sh "/home/thiago/.fehbg" &
+[[ -f "$HOME/.fehbg" ]] && sh "$HOME/.fehbg" &
 
 # Redshift
 which redshift &>/dev/null && redshift -l -23:-43 &
