@@ -1,0 +1,14 @@
+#!/bin/bash
+# Templates for a nice integration with dmenu :)
+
+TEMPLATE=$(
+cat <<HERE | dmenu -b -i -p 'dmtemplates: ' -l 10
+xrandr-t-hdmi-off
+xrandr-t-hdmi-mirror
+HERE
+)
+
+source ~/.alias
+
+echo "Executing $TEMPLATE..."
+eval $TEMPLATE
