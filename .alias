@@ -98,15 +98,6 @@ gentoo-chroot() {
 # gitignore - example usage: gi emacs,vim,c
 gi() { curl "http://www.gitignore.io/api/$@"; }
 
-gocd() { cd `go list -f '{{.Dir}}' $1`; }
-
-# golang bootstrapping
-gobootstrap() {
-  go get github.com/golang/lint
-  go get github.com/nsf/gocode
-  go get github.com/tj/go-search
-}
-
 # pacman qkkdiffs
 pacman-qkkdiff-file() {
     if [[ "$1" == "" ]]; then
