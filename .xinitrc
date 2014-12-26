@@ -24,6 +24,7 @@ case $WM in
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
   hawaii            ) exec hawaii;;
+  i3|i3wm           ) exec i3;;
   icewm             ) exec icewm-session;;
   jwm               ) exec jwm;;
   kde               ) exec startkde;;
@@ -33,7 +34,6 @@ case $WM in
   notion            ) exec notion;;
   openbox           ) exec openbox-session;;
   unity             ) exec unity;;
-  xfce|xfce4        ) exec startxfce4;;
+  xfce              ) exec startxfce4;;
   xmonad            ) exec xmonad;;
-  i3|i3wm|*         ) exec i3;;
 esac
