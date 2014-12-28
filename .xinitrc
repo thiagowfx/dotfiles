@@ -11,8 +11,6 @@ fi
 [[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
-WM=${:-i3}
-
 case $WM in
   awesome           ) exec awesome;;
   bspwm             ) exec bspwm;;
@@ -24,7 +22,6 @@ case $WM in
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
   hawaii            ) exec hawaii;;
-  i3|i3wm           ) exec i3;;
   icewm             ) exec icewm-session;;
   jwm               ) exec jwm;;
   kde               ) exec startkde;;
@@ -36,4 +33,5 @@ case $WM in
   unity             ) exec unity;;
   xfce              ) exec startxfce4;;
   xmonad            ) exec xmonad;;
+  i3|i3wm|*         ) exec i3;;
 esac
