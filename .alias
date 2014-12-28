@@ -72,6 +72,9 @@ alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
+# mini scripts
+alias t-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
 # adbsync for android
 adbsync() {
     if [[ ! -d "$1" ]]; then
