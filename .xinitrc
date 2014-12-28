@@ -10,6 +10,7 @@ fi
 
 [[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
+[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.xmodmap"
 
 case $WM in
   awesome           ) exec awesome;;
@@ -22,6 +23,7 @@ case $WM in
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
   hawaii            ) exec hawaii;;
+  i3|i3wm           ) exec i3;;
   icewm             ) exec icewm-session;;
   jwm               ) exec jwm;;
   kde               ) exec startkde;;
@@ -33,5 +35,8 @@ case $WM in
   unity             ) exec unity;;
   xfce              ) exec startxfce4;;
   xmonad            ) exec xmonad;;
-  i3|i3wm|*         ) exec i3;;
+  *                 ) which i3 &>/dev/null && exec i3 || { 
+    echo "Error! i3 wasn't found anywhere in your PATH"
+    return 1
+  };;
 esac
