@@ -73,7 +73,12 @@ alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --ext
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
 # mini scripts
+
+# get public IP
 alias t-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# rot13 encoding
+alias t-rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # adbsync for android
 adbsync() {

@@ -1,4 +1,4 @@
-# -*- sh -*-
+#!/bin/sh
 
 # zshrc
 [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
