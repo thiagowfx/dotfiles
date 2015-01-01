@@ -8,7 +8,7 @@ export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/bin:$HOME/bin/ruby:$PATH"
 [[ $TMUX = "" ]] && export TERM="rxvt-256color"
-export PAGER="vimpager"
+which vimpager &>/dev/null && export PAGER="vimpager"
 export VISUAL="vim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
