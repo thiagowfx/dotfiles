@@ -6,10 +6,8 @@
 [credential]
 	helper = store
 [alias]
-	puhs = push
 	l = commit -a -m "update"
-  p = push
-  s = status
+	p = push
 	st = status
 [core]
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
