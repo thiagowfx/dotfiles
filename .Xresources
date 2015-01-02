@@ -11,6 +11,9 @@ Xft.lcdfilter: lcddefault
 xterm*background: #000000
 xterm*foreground: #ffffff
 
+! emacs settings
+Emacs.font: Source Code Pro-10
+
 ! better urxvt settings
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
@@ -29,8 +32,8 @@ URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
-! better urxvt colors. For more: http://www.xcolors.net/
-! this is felixonmars style @ http://felixc.at/URxvt
+! http://www.xcolors.net/
+! felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
 urxvt.color3:  #c4a000
