@@ -2,7 +2,6 @@
 
 # environment variables
 export EDITOR="vim"
-export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
