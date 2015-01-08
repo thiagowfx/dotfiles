@@ -25,12 +25,6 @@ map <Leader>a ggVG
 map <Leader>m :make<CR>
 map <Leader>s :sort<CR>
 
-" command aliases
-command W w
-command Q q
-command Wq wq
-command WQ wq
-
 " user mappings
 inoremap jj <ESC>
 map <S-Insert> <MiddleMouse>
