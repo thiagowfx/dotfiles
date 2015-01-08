@@ -8,17 +8,7 @@ execute pathogen#infect()
 let g:airline_theme='luna'
 "let g:airline_powerline_fonts=1
 
-let g:ctrlp_dotfiles=0
-let g:ctrlp_match_window_reversed=0
-
-let g:easytags_async=1
-let g:easytags_dynamic_files=1
-
-let NERDTreeShowHidden=1
-
 let g:syntastic_cpp_compiler_options='-std=c++11'
-
-let g:ycm_path_to_python_interpreter='/usr/bin/python2'
 
 " colorscheme
 colorscheme molokai
@@ -34,7 +24,6 @@ let mapleader=","
 map <Leader>a ggVG
 map <Leader>m :make<CR>
 map <Leader>s :sort<CR>
-map <Leader>t :Tagbar<CR>
 
 " command aliases
 command W w
@@ -43,7 +32,6 @@ command Wq wq
 command WQ wq
 
 " user mappings
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 inoremap jj <ESC>
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
@@ -55,7 +43,6 @@ vnoremap / /\v
 vnoremap ? ?\v
 
 " user settings
-set autoread autowrite
 set backspace=indent,eol,start
 set encoding=utf-8 fileencodings=utf-8 termencoding=utf-8
 set nofoldenable foldmethod=indent
@@ -69,7 +56,8 @@ set t_Co=256
 set ttimeout ttimeoutlen=100 visualbell
 set ttyfast lazyredraw
 set wildmenu wildmode=longest,list:longest
-set undofile nobackup 
+set nobackup 
+" set undofile
 
 " user functions
 function! ResCur()
