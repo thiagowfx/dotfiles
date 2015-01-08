@@ -37,6 +37,8 @@ setopt hist_ignore_space
 setopt nohashdirs
 setopt nomatch
 setopt printexitvalue
+
+# blank space doesn't go to the history
 export HIST_IGNORE_SPACE
 
 # suffixes
