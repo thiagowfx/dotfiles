@@ -2,10 +2,9 @@
 
 # environment variables
 export EDITOR="vim"
-export PATH="$GOPATH/bin:$PATH"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
-export PATH="$HOME/bin:$HOME/bin/ruby:$PATH"
+export PATH="$HOME/bin:$PATH"
 [[ $TMUX = "" ]] && export TERM="rxvt-256color"
 which vimpager &>/dev/null && export PAGER="vimpager"
 export VISUAL="vim"
@@ -19,14 +18,13 @@ alias chown="chown -v"
 which colordiff &>/dev/null && alias colordiff="colordiff -uN" && alias diff="colordiff -uN"
 which cower &>/dev/null && [[ -d "$HOME/aur" ]] && alias cower="cower --color=always --sort=votes --target=$HOME/aur"
 alias cp="cp -v"
-alias ctest="ctest -V"
+which ctest &>/dev/null && alias ctest="ctest -V"
 alias curl="curl -v -L"
 alias df='df -h'
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
 alias free="free -h"
-alias gdb="gdb -q"
 alias grep="grep --color=always"
 alias hexdump="hexdump -C"
 which inxi &>/dev/null && alias inxi="inxi -F -M"
@@ -35,48 +33,37 @@ alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
 alias make="time make -j$(nproc) -l$(nproc)"
-alias matlab="matlab -nosplash"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias netstat="netstat -pln"
 which pacaur &>/dev/null && alias pacaur="pacaur --noconfirm --noedit"
 alias pgrep="pgrep -afl"
 alias pingg="ping google.com"
-alias reflector="reflector -x rsync"
 alias sl="ls"
 alias smem="smem -k"
-alias strace="strace -t"
 
 # templates
-alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
+alias android-t-emustart="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias docker-t-pa="sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${HOME}/Videos/out.mpg"
 alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
-alias qemu-t-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom"
 alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
+alias winetricks-t-bootstrap="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
 alias world="sudo pacman -Syu"
 alias world-t-apt="sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
 alias world-t-portage='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 alias xrandr-t-hdmi-on="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
-xrandr-t-hdmi-off() {
-  xrandr --output HDMI1 --off 
-}
-xrandr-t-hdmi-mirror() {
-  xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1
-}
+alias xrandr-t-hdmi-off="xrandr --output HDMI1 --off"
+alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
 alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
-alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
-alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
+alias ytdl-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
+alias ytdl-video="youtube-dl --continue --title --restrict-filenames"
 
 # mini scripts
-
-# get public IP
+#
+# Get public IP
 alias t-ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# rot13 encoding
-alias t-rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # adbsync for android
 adbsync() {

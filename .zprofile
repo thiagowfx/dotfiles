@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# zshrc
-[[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
-
+# GnuPG: password only once per session
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=""
 
