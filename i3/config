@@ -209,6 +209,9 @@ bindsym $mod+m scratchpad show
 
 # window rules
 for_window [window_role="pop-up"] floating enable
+
+# list of pop-up windows
+for_window [class="system.config.printer.py"] floating enable
 for_window [class="Lxappearance"] floating enable
 
 # custom hotkeys
