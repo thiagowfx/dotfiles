@@ -58,6 +58,12 @@ alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI
 alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias ytdl-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias ytdl-video="youtube-dl --continue --title --restrict-filenames"
+ytdl-stream() {
+  youtube-dl -o - "$1" | vlc -  
+}
+ytdl-stream-hd() {
+  youtube-dl -f bestvideo+bestaudio -o - "$1" | vlc -  
+}
 
 # mini scripts
 #

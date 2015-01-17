@@ -2,6 +2,9 @@
 
 [[ -f "$HOME/.fehbg" ]] && sh "$HOME/.fehbg" &
 
+# pulseaudio
+which start-pulseaudio-x11 &>/dev/null && start-pulseaudio-x11 &
+
 # Redshift
 which redshift &>/dev/null && redshift -l -23:-43 &
 
