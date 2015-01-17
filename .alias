@@ -4,8 +4,8 @@
 export EDITOR="vim"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
+export LESS="-R"
 export PATH="$HOME/bin:$PATH"
-[[ $TMUX = "" ]] && export TERM="rxvt-256color"
 which vimpager &>/dev/null && export PAGER="vimpager"
 export VISUAL="vim"
 export WINEARCH="win64"
@@ -13,51 +13,59 @@ export WINEDEBUG="fixme-all,warn+all"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEPREFIX="$HOME/.wine"
 
+addalias() {
+  which "$1" &>/dev/null && alias "$1"="$2"
+}
+addalias "colordiff" "colordiff -uN"
+addalias "ctest" "ctest -V"
+addalias "curl" "curl -v -L"
+addalias "inxi" "inxi -F -M"
+addalias "hexdump" "hexdump -C"
+addalias "netstat" "netstat -pln"
+addalias "pacaur" "pacaur --noconfirm --noedit"
+addalias "smem" "smem -k"
+
 alias chmod="chmod -v"
 alias chown="chown -v"
-which colordiff &>/dev/null && alias colordiff="colordiff -uN" && alias diff="colordiff -uN"
+which colordiff &>/dev/null && alias diff="colordiff -uN"
 which cower &>/dev/null && [[ -d "$HOME/aur" ]] && alias cower="cower --color=always --sort=votes --target=$HOME/aur"
 alias cp="cp -v"
-which ctest &>/dev/null && alias ctest="ctest -V"
-alias curl="curl -v -L"
 alias df='df -h'
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
 alias free="free -h"
 alias grep="grep --color=always"
-alias hexdump="hexdump -C"
-which inxi &>/dev/null && alias inxi="inxi -F -M"
-alias less="less -R"
 alias ln="ln -v"
 alias lspci="lspci -v"
 alias make="time make -j$(nproc) -l$(nproc)"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
-alias netstat="netstat -pln"
-which pacaur &>/dev/null && alias pacaur="pacaur --noconfirm --noedit"
 alias pgrep="pgrep -afl"
 alias pingg="ping google.com"
 alias sl="ls"
-alias smem="smem -k"
-
-# templates
-alias android-t-emustart="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
-alias docker-t-pa="sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
-alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${HOME}/Videos/out.mpg"
-alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
-alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
-alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-alias winetricks-t-bootstrap="winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
 alias world="sudo pacman -Syu"
-alias world-t-apt="sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
-alias world-t-portage='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
-alias xrandr-t-hdmi-on="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
-alias xrandr-t-hdmi-off="xrandr --output HDMI1 --off"
-alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
-alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
-alias ytdl-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
-alias ytdl-video="youtube-dl --continue --title --restrict-filenames"
+
+addtemplate() {
+  alias "t-$1"="$2"
+}
+addtemplate "android-emustart" "emulator -avd 'Intel-10-480x800' -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
+addtemplate "docker-pa" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
+addtemplate "ffmpeg-screencast" "ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/Videos/out-$(date '+%Y-%m-%d-%H-%M-%S').mpg"
+addtemplate "ip" "dig +short myip.opendns.com @resolver1.opendns.com"
+addtemplate "pacman-extrapkgs" "comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
+addtemplate "wget-pdf" "wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
+addtemplate "wget-spider" "wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
+addtemplate "winetricks-bootstrap" "winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
+addtemplate "world-apt" "sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
+addtemplate "world-portage" 'su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
+addtemplate "xrandr-hdmi-on" "xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
+addtemplate "xrandr-hdmi-off" "xrandr --output HDMI1 --off"
+addtemplate "xrandr-hdmi-mirror" "xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
+addtemplate "xrandr-reset" "xrandr --output LVDS1 --primary --mode 1366x768"
+addtemplate "ytdl-mp3" "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
+addtemplate "ytdl-video" "youtube-dl --continue --title --restrict-filenames"
+
 ytdl-stream() {
   youtube-dl -o - "$1" | vlc -  
 }
@@ -66,10 +74,6 @@ ytdl-stream-hd() {
 }
 
 # mini scripts
-#
-# Get public IP
-alias t-ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
 # adbsync for android
 adbsync() {
     if [[ ! -d "$1" ]]; then
