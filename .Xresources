@@ -15,11 +15,12 @@ xterm*foreground: #ffffff
 Emacs.font: Source Code Pro-10
 
 ! better urxvt settings
+URxvt.depth: 32
+URxvt.background: rgba:1111/1111/1111/dddd
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt.urgentOnBell: true
-! URxvt*termName: rxvt-unicode
 URxvt*background: #222222
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
