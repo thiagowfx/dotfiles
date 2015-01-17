@@ -24,6 +24,7 @@ URxvt.urgentOnBell: true
 URxvt*background: #222222
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
+! this depends of the selected font
 ! URxvt.letterSpace: -1
 URxvt*font: xft:Terminus:size=10:antialias=true
 URxvt.iso14755: false
