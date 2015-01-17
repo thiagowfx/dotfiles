@@ -1,21 +1,26 @@
 #!/bin/sh
 
-[[ -f "$HOME/.fehbg" ]] && sh "$HOME/.fehbg" &
+add() {
+  which "$1" &>/dev/null && "$@" &
+}
+
+# Compton (desktop composition)
+add compton -b
 
 # pulseaudio
-which start-pulseaudio-x11 &>/dev/null && start-pulseaudio-x11 &
+add start-pulseaudio-x11
 
 # Redshift
-which redshift &>/dev/null && redshift -l -23:-43 &
+add redshift -l -23:-43
 
 # Network manager.
-which nm-applet &>/dev/null && nm-applet &
+add nm-applet
 
 # Clipboard manager.
-which parcellite &>/dev/null && parcellite &
+add parcellite
 
 # No touchpad clicking while typing.
-which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
+add syndaemon -i 1 -t -k -d
 
 # Hide the mouse when idle.
-which unclutter &>/dev/null && unclutter &
+add unclutter
