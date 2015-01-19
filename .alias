@@ -1,9 +1,9 @@
 # -*- shell-script -*-
 
 # environment variables
-export ALTERNATE_EDITOR=""
+export ALTERNATE_EDITOR="" # for emacs daemon
 export EDITOR="vim"
-export GTEST_COLOR="YES"
+export GTEST_COLOR="YES" # for google test library
 export HISTCONTROL=ignoreboth
 export LESS="-R"
 export PATH="$HOME/bin:$PATH"
@@ -20,10 +20,14 @@ addalias() {
 addalias "colordiff" "colordiff -uN"
 addalias "ctest" "ctest -V"
 addalias "curl" "curl -v -L"
+addalias "free" "free -h"
+addalias "grep" "grep --color=always"
 addalias "inxi" "inxi -F -M"
 addalias "hexdump" "hexdump -C"
+addalias "make" "time make -j$(nproc) -l$(nproc)"
 addalias "netstat" "netstat -pln"
 addalias "pacaur" "pacaur --noconfirm --noedit"
+addalias "pgrep" "pgrep -afl"
 addalias "smem" "smem -k"
 
 alias chmod="chmod -v"
@@ -35,15 +39,9 @@ alias df='df -h'
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
-alias free="free -h"
-alias grep="grep --color=always"
 alias ln="ln -v"
 alias lspci="lspci -v"
-alias make="time make -j$(nproc) -l$(nproc)"
-alias mkdir="mkdir -p"
 alias mv="mv -v"
-alias pgrep="pgrep -afl"
-alias pingg="ping google.com"
 alias sl="ls"
 alias world="sudo pacman -Syu"
 
@@ -51,14 +49,16 @@ addtemplate() {
   alias "t-$1"="$2"
 }
 addtemplate "android-emustart" "emulator -avd 'Intel-10-480x800' -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
-addtemplate "docker-pa" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
+addtemplate "docker-norris" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
 addtemplate "ffmpeg-screencast" "ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/Videos/out-$(date '+%Y-%m-%d-%H-%M-%S').mpg"
 addtemplate "ip" "dig +short myip.opendns.com @resolver1.opendns.com"
 addtemplate "pacman-extrapkgs" "comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
+addtemplate "pingg" "ping google.com"
 addtemplate "wget-pdf" "wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 addtemplate "wget-spider" "wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 addtemplate "winetricks-bootstrap" "winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
 addtemplate "world-apt" "sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
+addtemplate "world-aur" "pacaur -Syua"
 addtemplate "world-portage" 'su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 addtemplate "xrandr-hdmi-on" "xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 addtemplate "xrandr-hdmi-off" "xrandr --output HDMI1 --off"
@@ -79,9 +79,10 @@ ytdl-stream-hd() {
 adbsync() {
     if [[ ! -d "$1" ]]; then
         cat <<EOF
+Purpose: sync a directory in your computer with one in your android. For now, it is just an one-way sync (computer -> android). TODO: full, efficient rsync-like
 Usage: adbsync <localdir>
-Example: adbsync ${HOME}/Downloads/toAndroid
-Remember connecting your device first!
+Example: adbsync $HOME/Downloads/toAndroid
+Remember connecting your device first:
   adb connect 192.168.0.*
 EOF
         return 0
@@ -89,7 +90,7 @@ EOF
     local TARGET_DIR="/storage/sdcard1/adbsync"
     adb wait-for-device
     adb shell "[[ ! -d ${TARGET_DIR} ]] && mkdir -p ${TARGET_DIR}"
-    adb push "${1}" "${TARGET_DIR}/$(basename ${1})" && echo "Files successfully copied."
+    adb push "$1" "${TARGET_DIR}/$(basename $1)" && echo "Files successfully copied."
 }
 
 # chroot: gentoo style
@@ -110,8 +111,8 @@ gi() { curl "http://www.gitignore.io/api/$@"; }
 pacman-qkkdiff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
-Usage: qkkdiff-file <file>
 Purpose: get the changes between this file now and in the upstream package
+Usage: qkkdiff-file <file>
 Example: qkkdiff-file /etc/pacman.conf"
 EOF
     elif [[ -f "$1" ]]; then
@@ -127,8 +128,8 @@ EOF
 pacman-qkkdiff-pkg() {
     if [[ "$1" == "" ]]; then
         echo <<EOF
-Usage: qkkdiff <package>
 Purpose: get the changes between the upstream package and the files on the filesystem
+Usage: qkkdiff <package>
 Example: qkkdiff pacman
 EOF
     elif ! pacman -Q "$1"; then
@@ -152,12 +153,12 @@ function proxy_on() {
         fi
 
         export http_proxy="http://$1/"
-        export https_proxy=$http_proxy
-        export ftp_proxy=$http_proxy
-        export rsync_proxy=$http_proxy
         export HTTP_PROXY=$http_proxy
+        export https_proxy=$http_proxy
         export HTTTS_PROXY=$http_proxy
+        export ftp_proxy=$http_proxy
         export FTP_PROXY=$http_proxy
+        export rsync_proxy=$http_proxy
         export RSYNC_PROXY=$http_proxy
         echo "Proxy environment variable set."
         return 0
