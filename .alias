@@ -1,6 +1,7 @@
 # -*- shell-script -*-
 
 # environment variables
+export ALTERNATE_EDITOR=""
 export EDITOR="vim"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
