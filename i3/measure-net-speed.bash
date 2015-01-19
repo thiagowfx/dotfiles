@@ -4,6 +4,7 @@
 #  people. So here goes: © 2012 Stefan Breunig
 #  stefan+measure-net-speed@mathphys.fsk.uni-heidelberg.de)
 
+# Name of the network interface, e.g. wlp2s0, eth0
 BLOCK_INSTANCE="$@"
 
 if [ -z "$BLOCK_INSTANCE" ]
@@ -11,12 +12,15 @@ if [ -z "$BLOCK_INSTANCE" ]
 fi
 
 if ! [ -e "/sys/class/net/${BLOCK_INSTANCE}/operstate" ] || ! [ "`cat /sys/class/net/${BLOCK_INSTANCE}/operstate`" = "up" ]
-  then echo "no net"
-  exit 0
+then 
+    echo "$BLOCK_INSTANCE ↓"
+    echo "$BLOCK_INSTANCE ↓"
+    echo "#FF0000"
+    exit 0
 fi
 
 # path to store the old results in
-path="/dev/shm/measure-net-speed-$BLOCK_INSTANCE"
+path="/dev/shm/$(basename $0)-${BLOCK_INSTANCE}"
 
 # grabbing data for each adapter. 
 read rx < "/sys/class/net/${BLOCK_INSTANCE}/statistics/rx_bytes"
