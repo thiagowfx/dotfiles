@@ -230,7 +230,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5% && pkill -RTMIN+1 '^i3blocks'
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% && pkill -RTMIN+1 '^i3blocks'
 #
-# For PulseAudio, an alternative
+# For PulseAudio: an alternative, using Graysky's pulseaudio-ctl
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && pkill -RTMIN+1 '^i3blocks'
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && pkill -RTMIN+1 '^i3blocks'
  
