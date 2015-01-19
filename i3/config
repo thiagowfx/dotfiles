@@ -172,14 +172,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # log out prompt
-set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)hutdown
+set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (q)uick hibernate, (r)eboot, Shift+(s)hutdown
 mode "$mode_system" {
-  bindsym l exec $I3lock, mode "default"
-  bindsym e exec i3-msg exit
-  bindsym s exec $I3lock && systemctl suspend, mode "default"
-  bindsym h exec $I3lock && systemctl hibernate, mode "default"
-  bindsym r exec systemctl reboot
-  bindsym Shift+s exec notify-send "Powering off..." && exec systemctl poweroff
+  bindsym l       exec $I3lock, mode "default"
+  bindsym e       exec i3-msg exit
+  bindsym s       exec $I3lock && notify-send "SYSTEM: Suspending..." && systemctl suspend, mode "default"
+  bindsym q       exec notify-send "SYSTEM: Hibernating (quick)..." && systemctl hibernate, mode "default"
+  bindsym h       exec $I3lock && notify-send "SYSTEM: Hibernating..." && systemctl hibernate, mode "default"
+  bindsym r       exec notify-send "SYSTEM: Rebooting..." && systemctl reboot
+  bindsym Shift+s exec notify-send "SYSTEM: Powering off..." && systemctl poweroff
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -211,8 +212,8 @@ bindsym $mod+m scratchpad show
 for_window [window_role="pop-up"] floating enable
 
 # list of pop-up windows
-for_window [class="System.config.printer.py"] floating enable
 for_window [class="Lxappearance"] floating enable
+for_window [class="System.config.printer.py"] floating enable
 
 # custom hotkeys
 bindsym Print exec scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f $HOME/Ramdisk/' && notify-send 'Took a SS'
