@@ -210,6 +210,7 @@ bindsym $mod+m scratchpad show
 
 # window rules
 for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # list of pop-up windows
 for_window [class="Lxappearance"] floating enable
