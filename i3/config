@@ -9,9 +9,9 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# mod4 is the win / super key
 set $mod Mod4
 set $Alt Mod1
-set $Win Mod4
 set $I3lock i3lock -c 222222
 set $FileManager dolphin
 set $TextEditor emacsclient -c
@@ -103,10 +103,10 @@ bindsym $mod+b focus child
 bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (n:str): '
 
 # dmtemplates
-set $mode_dmtemplates hd(m)i-mirror, hdmi-(o)ff
+set $mode_dmtemplates hdmi-(m)irror, hdmi-(o)ff
 mode "$mode_dmtemplates" {
-  bindsym m exec xrandr-t-hdmi-mirror && notify-send "hdmi-mirror", mode "default" 
-  bindsym o exec xrandr-t-hdmi-off && notify-send "hdmi-off", mode "default"
+  bindsym m exec xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && notify-send "SYSTEM: HDMI mirror", mode "default" 
+  bindsym o exec xrandr --output HDMI1 --off && notify-send "SYSTEM: HDMI OFF", mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -122,6 +122,12 @@ bindsym $mod+n workspace next
 bindsym $mod+Shift+n workspace prev
 bindsym $mod+p workspace prev
 
+#
+# named workspaces
+# 
+# Workspace 10 -- Media
+set $W10 10:♪
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -132,7 +138,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace $W10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -144,7 +150,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace $W10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -208,15 +214,28 @@ colors {
 bindsym $mod+o move scratchpad
 bindsym $mod+m scratchpad show
 
+#
 # window rules
+#
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-# list of pop-up windows
+#
+# window rules for workspaces
+#
+for_window [class="Audacious"] move to workspace $W10
+for_window [class="Spotify"] move to workspace $W10
+for_window [class="Vlc"] move to workspace $W10
+
+#
+# list of pop-up windows (floating behavior)
+#
 for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
 
+#
 # custom hotkeys
+#
 bindsym $mod+Print exec --no-startup-id scrot '%F_%H%M%S_$wx$h_scrot.png' --exec 'mv $f ~/Ramdisk/' && notify-send 'Took a SS'
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
