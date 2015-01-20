@@ -14,7 +14,7 @@ set $mod Mod4
 set $Alt Mod1
 set $I3lock i3lock -c 222222
 set $FileManager dolphin
-set $TextEditor emacsclient -c
+set $TextEditor emacsclient -c -a ""
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -223,9 +223,9 @@ for_window [window_role="task_dialog"] floating enable
 #
 # window rules for workspaces
 #
-for_window [class="Audacious"] move to workspace $W10
-for_window [class="Spotify"] move to workspace $W10
-for_window [class="Vlc"] move to workspace $W10
+#for_window [class="Audacious"] move to workspace $W10
+#for_window [class="Spotify"] move to workspace $W10
+#for_window [class="Vlc"] move to workspace $W10
 
 #
 # list of pop-up windows (floating behavior)
