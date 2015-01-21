@@ -75,6 +75,13 @@ ytdl-stream-hd() {
   youtube-dl -f bestvideo+bestaudio -o - "$1" | vlc -  
 }
 
+# third-party tools / enhancements
+addtool() {
+  [[ -f "$@" ]] && source "$@"
+}
+addtool "/usr/lib/z.sh"
+
+
 # mini scripts
 # adbsync for android
 adbsync() {

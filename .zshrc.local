@@ -24,9 +24,6 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# z
-[[ -f /usr/lib/z.sh ]] && . /usr/lib/z.sh
-
 # options
 setopt appendhistory
 setopt beep
