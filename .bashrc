@@ -8,7 +8,9 @@
 
 # System bashrc
 [[ -f /etc/bashrc ]] && source /etc/bashrc
-[[ -f /etc/bash_completion ]] && source /etc/bash_completion && complete -cf sudo
+[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+complete -cf sudo
 
 # Command-not-found for Arch Linux / pacman
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash

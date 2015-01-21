@@ -17,6 +17,7 @@ export WINEPREFIX="$HOME/.wine"
 addalias() {
   which "$1" &>/dev/null && alias "$1"="$2"
 }
+addalias "alsamixer" "alsamixer -c 0" # for PulseAudio
 addalias "colordiff" "colordiff -uN"
 addalias "ctest" "ctest -V"
 addalias "curl" "curl -v -L"
