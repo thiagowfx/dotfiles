@@ -8,7 +8,6 @@
 
 # System bashrc
 [[ -f /etc/bashrc ]] && source /etc/bashrc
-[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 complete -cf sudo
 
