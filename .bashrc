@@ -5,6 +5,7 @@
 
 # Our aliases
 [[ -f $HOME/.alias ]] && source $HOME/.alias
+alias ls="ls -F --color=always"
 
 # System bashrc
 [[ -f /etc/bashrc ]] && source /etc/bashrc
