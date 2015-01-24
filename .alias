@@ -30,6 +30,7 @@ addalias "netstat" "netstat -pln"
 addalias "pacaur" "pacaur --noconfirm --noedit"
 addalias "pgrep" "pgrep -afl"
 addalias "smem" "smem -k"
+addalias "xclip" "xclip -selection clipboard"
 
 alias chmod="chmod -v"
 alias chown="chown -v"
