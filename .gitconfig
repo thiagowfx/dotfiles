@@ -12,7 +12,7 @@
 	st = status
 [core]
   excludesfile = ~/.gitignore_global
-	autocrlf = true
+	autocrlf = input
 [color]
 	diff = auto
 	status = auto
