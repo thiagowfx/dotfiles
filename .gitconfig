@@ -6,11 +6,13 @@
 [credential]
 	helper = store
 [alias]
+	# lazy
 	l = commit -a -m "update"
 	p = push
 	st = status
 [core]
-	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore_global
+	autocrlf = true
 [color]
 	diff = auto
 	status = auto
@@ -25,4 +27,4 @@
 	tool = vimdiff
 	conflictstyle = diff3
 [mergetool]
-	prompt = false
+	prompt = true
