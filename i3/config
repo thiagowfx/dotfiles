@@ -237,7 +237,7 @@ for_window [class="System.config.printer.py"] floating enable
 #
 # custom hotkeys
 #
-bindsym $mod+Print exec --no-startup-id scrot '%F_%H%M%S_$wx$h_scrot.png' --exec 'mv $f ~/Ramdisk/' && notify-send 'Took a SS'
+bindsym Print exec --no-startup-id scrot '%F_%H%M%S_$wx$h_scrot.png' --exec 'mv $f ~/Ramdisk/' && notify-send 'Took a SS'
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
 
