@@ -116,6 +116,15 @@ gentoo-chroot() {
 # gitignore - example usage: gi emacs,vim,c
 gi() { curl "http://www.gitignore.io/api/$@"; }
 
+makepkgclean() {
+  echo "--> Cleaning up makepkg files..."
+  makepkg -code
+  echo "--> Removing any AUR tarballs left out..."
+  find . -name '*.src.tar.gz' -exec rm {} \;
+  echo "--> Removing any created packages..."
+  find . -name '*.pkg.tar.xz' -exec rm {} \;
+}
+
 # pacman qkkdiffs
 pacman-qkkdiff-file() {
     if [[ "$1" == "" ]]; then

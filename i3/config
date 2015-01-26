@@ -114,7 +114,7 @@ bindsym $mod+x mode "$mode_dmtemplates"
 
 # misc settings
 workspace_auto_back_and_forth yes
-focus_follows_mouse no
+# focus_follows_mouse no
 
 # switch to next workspace
 bindsym $mod+n workspace next
