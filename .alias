@@ -27,7 +27,7 @@ addalias "inxi" "inxi -F -M"
 addalias "hexdump" "hexdump -C"
 addalias "make" "time make -j$(nproc) -l$(nproc)"
 addalias "netstat" "netstat -pln"
-addalias "pacaur" "pacaur --noconfirm --noedit"
+addalias "pacaur" "pacaur --noconfirm --noedit --clean"
 addalias "pgrep" "pgrep -afl"
 addalias "smem" "smem -k"
 addalias "xclip" "xclip -selection clipboard"
@@ -39,7 +39,7 @@ which cower &>/dev/null && [[ -d "$HOME/aur" ]] && alias cower="cower --color=al
 alias cp="cp -v"
 alias df='df -h'
 alias du="du -h"
-alias em="emacsclient -t"
+alias em="emacs -nw -Q"
 alias emq="emacsclient -c"
 alias ln="ln -v"
 alias lspci="lspci -v"
@@ -51,16 +51,16 @@ addtemplate() {
   alias "t-$1"="$2"
 }
 addtemplate "android-emustart" "emulator -avd 'Intel-10-480x800' -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
-addtemplate "docker-norris" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
+addtemplate "docker-norris" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged repo/repo /bin/bash"
 addtemplate "ffmpeg-screencast" "ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/Videos/out-$(date '+%Y-%m-%d-%H-%M-%S').mpg"
 addtemplate "ip" "dig +short myip.opendns.com @resolver1.opendns.com"
 addtemplate "pacman-extrapkgs" "comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 addtemplate "pingg" "ping google.com"
 addtemplate "wget-pdf" "wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
-addtemplate "wget-spider" "wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
+addtemplate "wget-spider" "wget -e robots=off -w 2 --random-wait -r -H --spider --timestamping -t 5 -T 5 -l 10 --"
 addtemplate "winetricks-bootstrap" "winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
 addtemplate "world-apt" "sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
-addtemplate "world-aur" "pacaur -Syua"
+addtemplate "world-aur" "pacaur -Syuac"
 addtemplate "world-portage" 'su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 addtemplate "xrandr-hdmi-on" "xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 addtemplate "xrandr-hdmi-off" "xrandr --output HDMI1 --off"
@@ -69,9 +69,15 @@ addtemplate "xrandr-reset" "xrandr --output LVDS1 --primary --mode 1366x768"
 addtemplate "ytdl-mp3" "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 addtemplate "ytdl-video" "youtube-dl --continue --title --restrict-filenames"
 
+# gitignore.io
+# Example usage: 
+#   gi emacs,vim,c
+gi() { curl "http://www.gitignore.io/api/$@"; }
+
 ytdl-stream() {
   youtube-dl -o - "$1" | vlc -  
 }
+
 ytdl-stream-hd() {
   youtube-dl -f bestvideo+bestaudio -o - "$1" | vlc -  
 }
@@ -82,8 +88,6 @@ addtool() {
 }
 addtool "/usr/lib/z.sh"
 
-
-# mini scripts
 # adbsync for android
 adbsync() {
     if [[ ! -d "$1" ]]; then
@@ -113,13 +117,10 @@ gentoo-chroot() {
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 
-# gitignore - example usage: gi emacs,vim,c
-gi() { curl "http://www.gitignore.io/api/$@"; }
-
 makepkgclean() {
   echo "--> Cleaning up makepkg files..."
   makepkg -code
-  echo "--> Removing any AUR tarballs left out..."
+  echo "--> Removing any left out AUR tarballs..."
   find . -name '*.src.tar.gz' -exec rm {} \;
   echo "--> Removing any created packages..."
   find . -name '*.pkg.tar.xz' -exec rm {} \;
