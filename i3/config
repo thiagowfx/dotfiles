@@ -12,7 +12,8 @@
 # mod4 is the win / super key
 set $mod Mod4
 set $Alt Mod1
-set $I3lock i3lock -c 222222
+# set $I3lock i3lock -c 222222
+set $I3lock i3lock -i ~/.lockscreen.png
 set $FileManager dolphin
 set $TextEditor emacsclient -c -a ""
 
