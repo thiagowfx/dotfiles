@@ -226,9 +226,8 @@ for_window [window_role="task_dialog"] floating enable
 #
 for_window [class="Hexchat"] move to workspace $W09
 
-#for_window [class="Audacious"] move to workspace $W10
-#for_window [class="Spotify"] move to workspace $W10
-#for_window [class="Vlc"] move to workspace $W10
+for_window [class="Audacious"] move to workspace $W10
+for_window [class="Spotify"] move to workspace $W10
 
 # autostart programs with specific workspaces
 exec --no-startup-id hexchat

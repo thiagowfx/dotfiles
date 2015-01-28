@@ -49,10 +49,10 @@ set cursorline number ruler showcmd showmode scrolloff=5
 " Indentation/tabs/etc
 "
 " Normal
-set shiftwidth=2 shiftround tabstop=2 softtabstop=2 expandtab smarttab smartindent
+" set shiftwidth=2 shiftround tabstop=2 softtabstop=2 expandtab smarttab smartindent
 "
 " Linux Kernel development style
-"set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
 set t_Co=256
 set ttimeout ttimeoutlen=100 visualbell
