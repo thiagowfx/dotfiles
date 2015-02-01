@@ -104,10 +104,11 @@ bindsym $mod+b focus child
 bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (n:str): '
 
 # dmtemplates
-set $mode_dmtemplates hdmi-(m)irror, hdmi-(o)ff
+set $mode_dmtemplates hdmi-(m)irror, hdmi-(o)ff, (x)kill
 mode "$mode_dmtemplates" {
-  bindsym m exec xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && notify-send "SYSTEM: HDMI mirror", mode "default" 
-  bindsym o exec xrandr --output HDMI1 --off && notify-send "SYSTEM: HDMI OFF", mode "default"
+  bindsym m exec --no-startup-id xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && notify-send "SYSTEM: HDMI mirror", mode "default" 
+  bindsym o exec --no-startup-id xrandr --output HDMI1 --off && notify-send "SYSTEM: HDMI OFF", mode "default"
+  bindsym x exec --no-startup-id i3-sensible-terminal xkill, mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
