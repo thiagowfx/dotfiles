@@ -131,8 +131,8 @@ bindsym $mod+p workspace prev
 #
 # named workspaces
 # 
-set $W09 IRC
-set $W10 Music ♪
+set $W09 09:IRC
+set $W10 10:Music ♪
 
 # switch to workspace
 bindsym $mod+1 workspace 1
