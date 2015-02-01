@@ -35,7 +35,7 @@ addalias "xclip" "xclip -selection clipboard"
 alias chmod="chmod -v"
 alias chown="chown -v"
 which colordiff &>/dev/null && alias diff="colordiff -uN"
-which cower &>/dev/null && [[ -d "$HOME/aur" ]] && alias cower="cower --color=always --sort=votes --target=$HOME/aur"
+which cower &>/dev/null && [[ -d "$HOME/.aur" ]] && alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
 alias cp="cp -v"
 alias df='df -h'
 alias du="du -h"
