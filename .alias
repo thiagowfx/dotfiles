@@ -3,7 +3,6 @@
 # environment variables
 export ALTERNATE_EDITOR="" # for emacs daemon
 export EDITOR="vim"
-export GTEST_COLOR="YES" # for google test library
 export HISTCONTROL=ignoreboth
 export LESS="-R"
 export PATH="$HOME/bin:$PATH"
@@ -32,6 +31,7 @@ addalias "pgrep" "pgrep -afl"
 addalias "smem" "smem -k"
 addalias "xclip" "xclip -selection clipboard"
 
+alias asp="ASPROOT=~/.asp asp"
 alias chmod="chmod -v"
 alias chown="chown -v"
 which colordiff &>/dev/null && alias diff="colordiff -uN"
@@ -41,6 +41,7 @@ alias df='df -h'
 alias du="du -h"
 alias em="emacs -nw -Q"
 alias emq="emacsclient -c"
+alias gtest="GTEST_COLOR=YES gtest"
 alias ln="ln -v"
 alias lspci="lspci -v"
 alias mv="mv -v"
