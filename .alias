@@ -56,7 +56,6 @@ addtemplate "docker-norris" "sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X1
 addtemplate "ffmpeg-screencast" "ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/Videos/out-$(date '+%Y-%m-%d-%H-%M-%S').mpg"
 addtemplate "ip" "dig +short myip.opendns.com @resolver1.opendns.com"
 addtemplate "pacman-extrapkgs" "comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
-addtemplate "pingg" "ping google.com"
 addtemplate "wget-pdf" "wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 addtemplate "wget-spider" "wget -e robots=off -w 2 --random-wait -r -H --spider --timestamping -t 5 -T 5 -l 10 --"
 addtemplate "winetricks-bootstrap" "winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
