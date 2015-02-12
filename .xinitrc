@@ -40,6 +40,7 @@ case $WM in
   unity             ) exec unity;;
   xfce              ) exec startxfce4;;
   xmonad            ) exec xmonad;;
+  windowmaker       ) exec wmaker;;
   *                 ) which i3 &>/dev/null && exec i3 || { 
     echo "Error: i3 not found on your system"
     return 1
