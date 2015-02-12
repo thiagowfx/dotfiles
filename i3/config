@@ -229,6 +229,7 @@ for_window [window_role="task_dialog"] floating enable
 
 # no border in those windows
 for_window [class="Chromium"] border 1pixel
+for_window [class="Emacs"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 
 # windows that should float
