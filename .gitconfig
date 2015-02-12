@@ -6,7 +6,6 @@
 [credential]
 	helper = store
 [alias]
-	# lazy
 	l = commit -a -m "update"
 	p = push
 	st = status
