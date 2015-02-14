@@ -2,9 +2,11 @@
 
 # environment variables
 export ALTERNATE_EDITOR="" # for emacs daemon
+export ASPROOT="$HOME/.asp"
 export EDITOR="vim"
+export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.bin/ruby:$PATH"
 export VISUAL="vim"
 export WINEARCH="win64"
 export WINEDEBUG="fixme-all,warn+all"
@@ -28,7 +30,6 @@ addalias "netstat" "netstat -pln"
 addalias "pacaur" "pacaur --noconfirm --noedit --clean"
 addalias "pgrep" "pgrep -afl"
 
-alias asp="ASPROOT=~/.asp asp"
 alias chmod="chmod -v"
 alias chown="chown -v"
 which colordiff &>/dev/null && alias diff="colordiff -uN"
@@ -37,9 +38,7 @@ alias cp="cp -v"
 alias df='df -h'
 alias du="du -h"
 alias emq="emacsclient -c"
-alias gtest="GTEST_COLOR=YES gtest"
 alias ln="ln -v"
-alias lspci="lspci -v"
 alias mv="mv -v"
 alias sl="ls"
 alias world="sudo pacman -Syu"
@@ -72,10 +71,6 @@ gi() { curl "http://www.gitignore.io/api/$@"; }
 
 ytdl-stream() {
   youtube-dl -o - "$1" | vlc -  
-}
-
-ytdl-stream-hd() {
-  youtube-dl -f bestvideo+bestaudio -o - "$1" | vlc -  
 }
 
 # third-party tools / enhancements
