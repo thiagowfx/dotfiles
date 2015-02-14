@@ -9,12 +9,14 @@ let g:airline_theme='luna'
 
 let g:syntastic_cpp_compiler_options='-std=c++11'
 
-" colorscheme
-colorscheme jellybeans
-
 " syntax highlighting
 filetype plugin indent on
 syntax on
+
+" colorscheme
+colorscheme jellybeans
+set t_Co=256
+hi Normal ctermbg=NONE
 
 " set the leader key
 let mapleader=","
@@ -28,16 +30,9 @@ map <Leader>s :sort<CR>
 inoremap jj <ESC>
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
-nmap <C-x><C-p> :bprev<CR>
-nmap <C-x><C-n> :bnext<CR>
-nnoremap / /\v
-nnoremap ? ?\v
-vnoremap / /\v
-vnoremap ? ?\v
 
 " user settings
 set backspace=indent,eol,start
-execute "set colorcolumn=" . join(range(81,335), ',')
 set encoding=utf-8 fileencodings=utf-8 termencoding=utf-8
 set nofoldenable foldmethod=indent
 set history=10000 laststatus=2 modelines=0
@@ -54,9 +49,7 @@ set cursorline number ruler showcmd showmode scrolloff=5
 " Linux Kernel development style
 set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
-set t_Co=256
-set ttimeout ttimeoutlen=100 visualbell
+set nobackup visualbell
+set ttimeout ttimeoutlen=100
 set ttyfast lazyredraw
 set wildmenu wildmode=longest,list:longest
-set nobackup 
-" set undofile
