@@ -11,9 +11,6 @@ Xft.lcdfilter: lcddefault
 xterm*background: #000000
 xterm*foreground: #ffffff
 
-! emacs settings
-Emacs.font: Source Code Pro-10
-
 ! better urxvt settings
 URxvt.depth: 32
 URxvt.background: rgba:1111/1111/1111/dddd
@@ -24,8 +21,6 @@ URxvt.urgentOnBell: true
 URxvt*background: #222222
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-! this depends of the selected font
-! URxvt.letterSpace: -1
 URxvt*font: xft:Terminus:size=10:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false

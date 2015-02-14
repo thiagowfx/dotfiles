@@ -1,13 +1,12 @@
 # -*- shell-script -*-
 
 # environment variables
-export ALTERNATE_EDITOR="" # for emacs daemon
 export ASPROOT="$HOME/.asp"
 export EDITOR="vim"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/.bin:$HOME/.bin/ruby:$PATH"
-export VISUAL="vim"
+export VISUAL="$EDITOR"
 export WINEARCH="win64"
 export WINEDEBUG="fixme-all,warn+all"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
@@ -19,7 +18,6 @@ addalias() {
 
 addalias "alsamixer" "alsamixer -c 0" # for PulseAudio
 addalias "colordiff" "colordiff -uN"
-addalias "ctest" "ctest -V"
 addalias "curl" "curl -v -L"
 addalias "free" "free -h"
 addalias "grep" "grep --color=always"
@@ -37,7 +35,6 @@ which cower &>/dev/null && [[ -d "$HOME/.aur" ]] && alias cower="cower --color=a
 alias cp="cp -v"
 alias df='df -h'
 alias du="du -h"
-alias emq="emacsclient -c"
 alias ln="ln -v"
 alias mv="mv -v"
 alias sl="ls"
