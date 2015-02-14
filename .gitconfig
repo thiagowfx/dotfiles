@@ -19,8 +19,6 @@
 	interactive = auto
 	showbranch = auto
 	ui = auto
-[github]
-	user = thiagowfx
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
