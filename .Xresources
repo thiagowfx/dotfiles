@@ -29,11 +29,10 @@ URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.url-select.underline: true
-URxvt.url-select.launcher: xdg-open
-URxvt.url-launcher: xdg-open
+URxvt.url-select.launcher: chromium
+URxvt.url-launcher: chromium
 URxvt.matcher.button: 1
 
-! http://www.xcolors.net/
 ! felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
