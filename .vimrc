@@ -10,7 +10,7 @@ let g:airline_theme='luna'
 let g:syntastic_cpp_compiler_options='-std=c++11'
 
 " colorscheme
-colorscheme molokai
+colorscheme jellybeans
 
 " syntax highlighting
 filetype plugin indent on

@@ -119,7 +119,7 @@ bindsym $mod+x mode "$autostarts"
 #
 # focus_follows_mouse no
 hide_edge_borders vertical
-floating_maximum_size 800 x 600
+floating_maximum_size 1024 x 768
 workspace_auto_back_and_forth yes
 
 # switch to next workspace
