@@ -10,7 +10,6 @@
 	p = push
 	st = status
 [core]
-  excludesfile = ~/.gitignore_global
 	autocrlf = input
 [color]
 	diff = auto
