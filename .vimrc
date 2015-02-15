@@ -22,25 +22,24 @@ set t_Co=256
 " enable transparency
 hi Normal ctermbg=NONE
 
-" set the leader key
-let mapleader=","
-
 " display tabs and trailing spaces
 set list
 set listchars=tab:\ ¬,trail:.
 
-" gvim options
-" no toolbar
+" gvim options: no toolbar, no menubar, no blinking cursor
 set guioptions-=T
-" no blinking cursor
+set guioptions-=m
 set gcr=a:blinkon0
+
+" set the leader key
+let mapleader=","
 
 " user mappings with the leader key
 map <Leader>a ggVG
 map <Leader>m :make<CR>
 map <Leader>s :sort<CR>
 
-" user mappings
+" other user mappings
 inoremap jj <ESC>
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>

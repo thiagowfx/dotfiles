@@ -27,6 +27,7 @@ addalias "make" "time make -j$(nproc) -l$(nproc)"
 addalias "netstat" "netstat -pln"
 addalias "pacaur" "pacaur --noconfirm --noedit --clean"
 addalias "pgrep" "pgrep -afl"
+addalias "xclip" "xclip -selection clipboard"
 
 alias chmod="chmod -v"
 alias chown="chown -v"
@@ -64,7 +65,12 @@ addtemplate "ytdl-video" "youtube-dl --continue --title --restrict-filenames"
 # gitignore.io
 # Example usage: 
 #   gi emacs,vim,c
-gi() { curl "http://www.gitignore.io/api/$@"; }
+gi() { curl "http://www.gitignore.io/api/$@" }
+
+# rot-13 encoding
+# Example usage:
+#   rot13 "hello world"
+alias rot13="tr A-Za-z N-ZA-Mn-za-m"
 
 ytdl-stream() {
   youtube-dl -o - "$1" | vlc -  

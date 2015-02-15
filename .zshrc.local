@@ -5,7 +5,8 @@
 # If not running interactively, don't do anything
 [[ -z "$PS1" ]] && return
 
-fpath=(~/.fpath.mine $fpath)
+# enable this for debugging new completions
+# fpath=(~/.fpath.mine $fpath)
 
 # autoloads
 autoload -U bashcompinit && bashcompinit
