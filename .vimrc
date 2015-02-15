@@ -6,7 +6,7 @@ execute pathogen#infect()
 
 " plug-in settings
 let g:airline_powerline_fonts=0
-let g:airline_theme='luna'
+let g:airline_theme='jellybeans'
 
 let g:syntastic_cpp_compiler_options='-std=c++11'
 let g:syntastic_check_on_open=1
