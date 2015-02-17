@@ -50,11 +50,13 @@ set autoread
 set backspace=indent,eol,start
 set encoding=utf-8 fileencodings=utf-8 termencoding=utf-8
 set nofoldenable foldmethod=indent
-set history=10000 laststatus=2 modelines=0
+set history=10000 laststatus=2 modelines=0 undolevels=10000
 set ignorecase infercase smartcase
 set incsearch hlsearch showmatch wrapscan
 set mouse=a ttymouse=xterm2
 set cursorline number ruler showcmd showmode scrolloff=5
+set shortmess=atI
+set title
 
 " Indentation/tabs/etc
 "
@@ -67,4 +69,4 @@ set shiftwidth=4 shiftround tabstop=4 softtabstop=4 expandtab smarttab smartinde
 set nobackup visualbell
 set ttimeout ttimeoutlen=100
 set ttyfast lazyredraw
-set wildmenu wildmode=list:full
+set wildmenu wildmode=list:full wildignore=*.swp,*.bak,*.pyc,*.class
