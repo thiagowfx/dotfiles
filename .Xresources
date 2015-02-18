@@ -21,7 +21,7 @@ URxvt.urgentOnBell: true
 URxvt*background: #222222
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Terminus:size=10:antialias=true
+URxvt*font: xft:Terminus:size=9:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbed,keyboard-select
@@ -29,8 +29,8 @@ URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.url-select.underline: true
-URxvt.url-select.launcher: chromium
-URxvt.url-launcher: chromium
+URxvt.url-select.launcher: xdg-open
+URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
 ! felixonmars style @ http://felixc.at/URxvt
