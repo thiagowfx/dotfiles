@@ -71,10 +71,6 @@ gi() { curl "http://www.gitignore.io/api/$@" }
 #   rot13 "hello world"
 alias rot13="tr A-Za-z N-ZA-Mn-za-m"
 
-ytdl-stream() {
-  youtube-dl -o - "$1" | vlc -  
-}
-
 # third-party tools / enhancements
 addtool() {
   [[ -f "$@" ]] && source "$@"
