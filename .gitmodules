@@ -1,3 +1,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/thiagowfx/vim.git
+[submodule "gdbinit"]
+	path = gdbinit
+	url = https://github.com/gdbinit/gdbinit
