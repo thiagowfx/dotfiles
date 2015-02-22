@@ -1,0 +1,1 @@
+grml-zsh-config/etc/skel/.zshrc
