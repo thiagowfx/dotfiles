@@ -1,9 +1,9 @@
-[submodule "vim"]
-	path = vim
-	url = https://github.com/thiagowfx/vim.git
 [submodule "gdbinit"]
 	path = gdbinit
 	url = https://github.com/gdbinit/gdbinit
 [submodule "grml-zsh-config"]
 	path = grml-zsh-config
 	url = git://git.grml.org/grml-etc-core.git
+[submodule ".vim"]
+	path = .vim
+	url = https://github.com/thiagowfx/vim
