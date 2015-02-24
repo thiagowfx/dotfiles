@@ -64,7 +64,7 @@ addtemplate "ytdl-video" "youtube-dl --continue --title --restrict-filenames"
 # gitignore.io
 # Example usage: 
 #   gi emacs,vim,c
-gi() { curl "http://www.gitignore.io/api/$@" }
+gi() { curl "http://www.gitignore.io/api/$@"; }
 
 # rot-13 encoding
 # Example usage:
