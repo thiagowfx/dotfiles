@@ -2,10 +2,11 @@
 	default = simple
 [user]
 	name = Thiago Perrotta
-	email = thiagoperrotta95@gmail.com
+	email = perrotta.thiago@poli.ufrj.br
 [credential]
 	helper = store
 [alias]
+	d = diff
 	l = commit -a -m "update"
 	p = push
 	st = status
@@ -24,3 +25,5 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = true
+[sendemail]
+	smtpserver = /usr/bin/sendmail
