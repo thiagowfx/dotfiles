@@ -38,7 +38,7 @@ case $WM in
   notion            ) exec notion;;
   openbox           ) exec openbox-session;;
   unity             ) exec unity;;
-  xfce              ) exec startxfce4;;
+  xfce|xfce4        ) exec startxfce4;;
   xmonad            ) exec xmonad;;
   windowmaker       ) exec wmaker;;
   *                 ) which i3 &>/dev/null && exec i3 || { 

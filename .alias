@@ -25,6 +25,7 @@ addalias "inxi" "inxi -F -M"
 addalias "hexdump" "hexdump -C"
 addalias "make" "time make -j$(nproc) -l$(nproc)"
 addalias "netstat" "netstat -pln"
+addalias "packer" "packer --noconfirm"
 addalias "pgrep" "pgrep -afl"
 addalias "xclip" "xclip -selection clipboard"
 
