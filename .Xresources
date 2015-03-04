@@ -1,4 +1,4 @@
-! better font rendering
+! font rendering
 Xft.autohint: true
 Xft*antialias: true
 Xft*hinting: true
@@ -11,9 +11,9 @@ Xft.lcdfilter: lcddefault
 xterm*background: #000000
 xterm*foreground: #ffffff
 
-! better urxvt settings
+! urxvt settings
 URxvt.depth: 32
-URxvt.background: rgba:1111/1111/1111/dddd
+URxvt.background: rgba:1111/1111/1111/eeee
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
@@ -24,16 +24,19 @@ URxvt.scrollBar: false
 URxvt*font: xft:Terminus:size=9:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbed,keyboard-select
+URxvt.perl-ext-common: clipboard,confirm-paste,default,tabbed,url-select
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.url-select.underline: true
+URxvt.clipboard.autocopy: true
+URxvt.url-select.button: 1
 URxvt.url-select.launcher: xdg-open
-URxvt.url-launcher: xdg-open
-URxvt.matcher.button: 1
+URxvt.url-select.underline: true
 
+!
+! urxvt colors
+! 
 ! felixonmars style @ http://felixc.at/URxvt
+!
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
 urxvt.color3:  #c4a000
