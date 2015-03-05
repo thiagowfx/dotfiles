@@ -30,6 +30,23 @@ addalias() {
   alias "$1"="$2"
 }
 
+# Templates are functions/snippets for general use.
+# They are aliased preceded with "t-".
+#
+# The first argument should be a function defined internally, preceded with _.
+#
+# A program can be optionally specified as second argument; if it is not found
+# in the PATH, then the template won't be defined.
+#
+# Arguments:
+#  $1: template name
+#  $2: a program (e.g. vim or /usr/bin/vim)
+#
+addtemplate() {
+  [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
+  alias "t-$1"="_$1"
+}
+
 #
 # environment variables
 #
@@ -112,9 +129,6 @@ addalias pgrep "pgrep -afl" pgrep
 # more useful xclip
 addalias xclip "xclip -selection clipboard" xclip
 
-# upgrade Arch system
-addalias world "sudo pacman -Syu" world
-
 #
 # simple aliases
 #
@@ -127,53 +141,19 @@ alias cp="cp -v"
 alias ln="ln -v"
 alias mv="mv -v"
 
-addtemplate() {
-  alias "t-$1"="$2"
-}
-
-addtemplate "ffmpeg-screencast" "ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/Videos/out-$(date '+%Y-%m-%d-%H-%M-%S').mpg"
-addtemplate "ip" "dig +short myip.opendns.com @resolver1.opendns.com"
-addtemplate "pacman-extrapkgs" "comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
-addtemplate "pingg" "ping google.com"
-addtemplate "wget-pdf" "wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
-addtemplate "wget-spider" "wget -e robots=off -w 2 --random-wait -r -H --spider --timestamping -t 5 -T 5 -l 10 --"
-addtemplate "winetricks-bootstrap" "winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run"
-addtemplate "world-apt" "sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
-addtemplate "world-aur" "packer -Syu --noconfirm"
-addtemplate "world-portage" 'su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles"'
-addtemplate "xrandr-hdmi-on" "xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
-addtemplate "xrandr-hdmi-off" "xrandr --output HDMI1 --off"
-addtemplate "xrandr-hdmi-mirror" "xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
-addtemplate "xrandr-reset" "xrandr --output LVDS1 --primary --mode 1366x768"
-addtemplate "ytdl-mp3" "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
-addtemplate "ytdl-video" "youtube-dl --continue --title --restrict-filenames"
-
-# gitignore.io
-# Example usage: 
-#   gi emacs,vim,c
-gi() { curl "http://www.gitignore.io/api/$@"; }
-
-# rot-13 encoding
-# Example usage:
-#   rot13 "hello world"
-alias rot13="tr A-Za-z N-ZA-Mn-za-m"
-
-# third-party tools / enhancements
-addtool() {
-  [[ -f "$@" ]] && source "$@"
-}
-
-addtool "/usr/lib/z.sh"
+#
+# templates
+#
 
 # adbsync for android
-adbsync() {
+_adbsync() {
     if [[ ! -d "$1" ]]; then
         cat <<EOF
-Purpose: sync a directory in your computer with one in your android. For now, it is just an one-way sync (computer -> android). TODO: full, efficient rsync-like
-Usage: adbsync <localdir>
-Example: adbsync $HOME/Downloads/toAndroid
-Remember connecting your device first:
-  adb connect 192.168.0.*
+  Purpose: to sync a directory in your computer with one in your android. For now, it is just an one-way sync (computer -> android). TODO: full, efficient rsync-like sync
+  Usage: adbsync <localdir>
+  Example: adbsync $HOME/toAndroid
+  Remember connecting your device first:
+    adb connect 192.168.0.*
 EOF
         return 0
     fi
@@ -182,9 +162,16 @@ EOF
     adb shell "[[ ! -d ${TARGET_DIR} ]] && mkdir -p ${TARGET_DIR}"
     adb push "$1" "${TARGET_DIR}/$(basename $1)" && echo "Files successfully copied."
 }
+addtemplate adbsync adb
+
+# ffmpeg x11 screencasting
+_ffmpeg-screencast() {
+    ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mpg
+}
+addtemplate ffmpeg-screencast ffmpeg
 
 # chroot: gentoo style
-gentoo-chroot() {
+_gentoo-chroot() {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
     [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
     sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
@@ -193,23 +180,47 @@ gentoo-chroot() {
     sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
+addtemplate gentoo-chroot chroot
 
-makepkgclean() {
+# gitignore.io. Example usage: gi ruby,rails
+_gi() {
+    curl "http://www.gitignore.io/api/$@"
+}
+addtemplate gi curl
+
+# get public IP address
+_ip() {
+    dig +short myip.opendns.com @resolver1.opendns.com
+}
+addtemplate ip dig
+
+# get extra packages installed on the pacman-based system
+_pacman-extrapkgs() {
+    comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)
+}
+addtemplate pacman-extrapkgs pacman
+
+# makepkg: clean out build leftovers
+_makepkgclean() {
   echo "--> Cleaning up makepkg files..."
   makepkg -code
+
   echo "--> Removing any left out AUR tarballs..."
   find . -name '*.src.tar.gz' -exec rm {} \;
+
   echo "--> Removing any created packages..."
   find . -name '*.pkg.tar.xz' -exec rm {} \;
 }
+addtemplate makepkgclean makepkg
 
-# pacman qkkdiffs
-pacman-qkkdiff-file() {
+# pacman: given a specific full-path file, get a diff between he
+# current one on the system and the one in its respective package
+_pacman-diff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
-Purpose: get the changes between this file now and in the upstream package
-Usage: qkkdiff-file <file>
-Example: qkkdiff-file /etc/pacman.conf"
+  Purpose: get the changes between this file now and in the upstream package
+  Usage: qkkdiff-file <file>
+  Example: qkkdiff-file /etc/pacman.conf"
 EOF
     elif [[ -f "$1" ]]; then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
@@ -220,13 +231,16 @@ EOF
         return 1
     fi
 }
+addtemplate pacman-diff-file pacman
 
-pacman-qkkdiff-pkg() {
+# pacman: given a package name, get differences between the files it contain
+# and the ones in the system
+_pacman-diff-pkg() {
     if [[ "$1" == "" ]]; then
         echo <<EOF
-Purpose: get the changes between the upstream package and the files on the filesystem
-Usage: qkkdiff <package>
-Example: qkkdiff pacman
+  Purpose: get the changes between the upstream package and the files on the filesystem
+  Usage: qkkdiff <package>
+  Example: qkkdiff pacman
 EOF
     elif ! pacman -Q "$1"; then
         return 1
@@ -236,9 +250,10 @@ EOF
         return 0
     fi
 }
+addtemplate pacman-diff-pkg pacman
 
-# proxy
-function proxy_on() {
+# set a proxy server
+function _proxy-on() {
     export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 
     if (( $# > 0 )); then
@@ -256,7 +271,7 @@ function proxy_on() {
         export FTP_PROXY=$http_proxy
         export rsync_proxy=$http_proxy
         export RSYNC_PROXY=$http_proxy
-        echo "Proxy environment variable set."
+        echo "Proxy environment variables set."
         return 0
     fi
 
@@ -274,11 +289,85 @@ function proxy_on() {
     export ftp_proxy=$http_proxy
     export rsync_proxy=$http_proxy
 }
+addtemplate proxy-on
 
-function proxy_off(){
+# unset proxy servers
+function _proxy-off(){
     unset http_proxy
-    unset https_proxy
+    unset HTTPS_PROXY
+    unset http_proxy
+    unset HTTP_PROXY
     unset ftp_proxy
+    unset FTP_PROXY
     unset rsync_proxy
-    echo -e "Proxy environment variable removed."
+    unset RSYNC_PROXY
+    echo -e "Proxy environment variables removed."
 }
+addtemplate proxy-off
+# ping google.com
+_pingg() {
+    ping google.com
+}
+addtemplate pingg ping
+
+# rot13 encoding. Example usage: rot13 "hello"
+_rot13() {
+    echo "$@" | tr A-Za-z N-ZA-Mn-za-m
+}
+addtemplate rot13 tr
+
+# wget all pdfs from a domain
+_wget-pdf() {
+    wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --
+}
+addtemplate wget-pdf wget
+
+# enhance a wine's WINEPREFIX by bootstrapping some programs with winetricks
+_winetricks-boostrap() {
+    winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run
+}
+addtemplate winetricks-bootstrap winetricks
+
+# upgrade a Unix system
+_world() {
+    [ -e /etc/arch-release ] && sudo pacman -Syu && return
+    [ -e /etc/gentoo-release ] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
+    [ -e /etc/ubuntu-release ] && sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade && return
+}
+addtemplate world
+
+# xrandr turn on hdmi for laptop
+_xrandr-laptop-hdmi-on() {
+    xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1
+}
+addtemplate xrandr-laptop-hdmi-on xrandr
+
+# xrandr turn off hdmi for laptop
+_xrandr-laptop-hdmi-off() {
+    xrandr --output HDMI1 --off
+}
+addtemplate xrandr-laptop-hdmi-off xrandr
+
+# xrandr mirror displays (hdmi) for laptop
+_xrandr-laptop-hdmi-mirror() {
+    xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1
+}
+addtemplate xrandr-laptop-hdmi-mirror xrandr
+
+# xrandr reset resolution for laptop
+_xrandr-laptop-reset() {
+    xrandr --output LVDS1 --primary --mode 1366x768
+}
+addtemplate xrandr-laptop-reset xrandr
+
+# youtube-dl: download video as mp3
+_ytdl-mp3() {
+    youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3
+}
+addtemplate ytdl-mp3 youtube-dl
+
+# youtube-dl: download video
+_ytdl-video() {
+    youtube-dl --continue --title --restrict-filenames
+}
+addtemplate ytdl-video youtube-dl
