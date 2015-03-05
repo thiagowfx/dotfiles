@@ -120,6 +120,9 @@ addalias grep "grep --color=always" grep
 # canonical hexdump output
 addalias hexdump "hexdump -C" hexdump
 
+# more efficient make
+addalias make "time make -j$(nproc) -l$(nproc)" make
+
 # more verbose netstat
 addalias netstat "netstat -pln" netstat
 
