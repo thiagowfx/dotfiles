@@ -103,17 +103,6 @@ bindsym $mod+b focus child
 # rename current workspace
 bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (n:str): '
 
-# autostarts
-set $autostarts (9)irc, hdmi-(m)irror, hdmi-(o)ff
-mode "$autostarts" {
-  bindsym m exec --no-startup-id xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && notify-send "SYSTEM: HDMI mirror", mode "default" 
-  bindsym o exec --no-startup-id xrandr --output HDMI1 --off && notify-send "SYSTEM: HDMI OFF", mode "default"
-  bindsym 9 exec hexchat && notify-send "SYSTEM: Starting IRC", mode "default"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+x mode "$autostarts"
-
 #
 # misc settings
 #
