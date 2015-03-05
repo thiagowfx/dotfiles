@@ -1,45 +1,131 @@
 # -*- shell-script -*-
 
-# environment variables
-export ASPROOT="$HOME/.asp"
-export EDITOR="vim"
-export GTEST_COLOR="YES"
-export HISTCONTROL=ignoreboth
-export PATH="$HOME/.bin:$HOME/.bin/ruby:$PATH"
-export VISUAL="$EDITOR"
-export WINEARCH="win64"
-export WINEDEBUG="fixme-all,warn+all"
-export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-export WINEPREFIX="$HOME/.wine"
-
-addalias() {
-  which "$1" &>/dev/null && alias "$1"="$2"
+# This function sets an environment variable iff its correlated program
+# is installed and/or if a given file exists on the system.
+#
+# Arguments:
+#  $1: the environment variable (e.g. EDITOR)
+#  $2: its value
+#  $3: a program (e.g. vim or /usr/bin/vim)
+#  $4: a file (e.g. $HOME/directory)
+#
+addenv() {
+    [[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+    [[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+    export "$1"="$2"
 }
 
-addalias "alsamixer" "alsamixer -c 0" # for PulseAudio
-addalias "colordiff" "colordiff -uN"
-addalias "curl" "curl -v -L"
-addalias "free" "free -h"
-addalias "grep" "grep --color=always"
-addalias "inxi" "inxi -F -M"
-addalias "hexdump" "hexdump -C"
-addalias "make" "time make -j$(nproc) -l$(nproc)"
-addalias "netstat" "netstat -pln"
-addalias "packer" "packer --noconfirm"
-addalias "pgrep" "pgrep -afl"
-addalias "xclip" "xclip -selection clipboard"
+# This function creates an alias iff the specified program and/or a given file
+# exists on the system.
+#
+# Arguments:
+#  $1: the alias
+#  $2: its value
+#  $3: a program (e.g. vim or /usr/bin/vim)
+#  $4: a file (e.g. $HOME/directory)
+#
+addalias() {
+  [[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+  [[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+  alias "$1"="$2"
+}
 
-alias chmod="chmod -v"
-alias chown="chown -v"
-which colordiff &>/dev/null && alias diff="colordiff -uN"
-which cower &>/dev/null && [[ -d "$HOME/.aur" ]] && alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
+#
+# environment variables
+#
+
+# asp (https://github.com/falconindy/asp) -- for Arch Linux
+addenv ASPROOT "$HOME/.asp" asp
+
+# system-wide editor
+addenv EDITOR "vim" vim
+
+# enable colors for google test
+addenv GTEST_COLOR "YES" gtest
+
+# don't add two equal consecutive commands in bash history (add just one)
+addenv HISTCONTROL "ignoreboth" bash
+
+# user scripts/programs
+addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
+
+# ruby programs (through rubygems)
+addenv PATH "$HOME/.bin/ruby:$PATH" "" "$HOME/.bin/ruby"
+
+# system-wide editor
+addenv VISUAL "$EDITOR"
+
+# wine environment configuration
+addenv WINEARCH "win64" wine
+addenv WINEDEBUG "fixme-all,warn+all" wine
+addenv WINEDLLOVERRIDES "winemenubuilder.exe=d" wine
+addenv WINEPREFIX "$HOME/.wine" wine
+
+#
+# aliases
+#
+
+# I use PulseAudio
+addalias alsamixer "alsamixer -c 0" alsamixer
+
+# more verbose ch*
+addalias chmod "chmod -v" chmod
+addalias chown "chown -v" chown
+
+# more verbose curl
+addalias curl "curl -v -L" curl
+
+# unified diff output
+addalias diff "diff -uN" diff
+
+# if colordiff is present, colored and unified diff output
+addalias diff "colordiff -uN" colordiff
+addalias colordiff "colordiff -uN" colordiff
+
+# more intuitive cower
+addalias cower "cower --color=always --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"
+
+# more human df
+addalias df "df -h" df
+
+# more human du
+addalias du "du -h" du
+
+# more human free
+addalias free "free -h" free
+
+# colored grep
+addalias grep "grep --color=always" grep
+
+# canonical hexdump output
+addalias hexdump "hexdump -C" hexdump
+
+# more verbose netstat
+addalias netstat "netstat -pln" netstat
+
+# automatic packer
+addalias packer "packer --noconfirm" packer
+
+# more intuitive pgrep
+addalias pgrep "pgrep -afl" pgrep
+
+# more useful xclip
+addalias xclip "xclip -selection clipboard" xclip
+
+# upgrade Arch system
+addalias world "sudo pacman -Syu" world
+
+#
+# simple aliases
+#
+
+# typos
+alias sl="ls"
+
+# more verbose basic system commands
 alias cp="cp -v"
-alias df='df -h'
-alias du="du -h"
 alias ln="ln -v"
 alias mv="mv -v"
-alias sl="ls"
-alias world="sudo pacman -Syu"
 
 addtemplate() {
   alias "t-$1"="$2"
