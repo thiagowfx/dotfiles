@@ -1,26 +1,28 @@
-# -*- sh -*-
+# -*- shell-script -*-
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Our aliases
+# aliases
 [[ -f $HOME/.alias ]] && source $HOME/.alias
 alias ls="ls -F --color=always"
 
-# System bashrc
+# system bashrc and completion for sudo
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 complete -cf sudo
 
-# Command-not-found for Arch Linux / pacman
+# command-not-found hook for Arch Linux / pacman
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
-# prompt
-git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
+# set prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
+
+# add git to prompt
+git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
 PS1="\[\e[0;32m\]\$(git_branch)\[\e[m\]$PS1"
 
-# options
+# shell options
 set -o emacs
 shopt -s checkwinsize
 shopt -s cdspell
@@ -33,7 +35,7 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
 
-# colored man
+# colored man pages
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
         LESS_TERMCAP_md=$'\E[01;38;5;74m' \
