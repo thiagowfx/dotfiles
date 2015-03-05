@@ -1,1 +1,1 @@
-.zprofile
+.profile

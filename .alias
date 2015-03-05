@@ -1,4 +1,4 @@
-# -*- shell-script -*-
+#!/bin/sh
 
 # This function sets an environment variable iff its correlated program
 # is installed and/or if a given file exists on the system.
@@ -60,8 +60,11 @@ addenv EDITOR "vim" vim
 # enable colors for google test
 addenv GTEST_COLOR "YES" gtest
 
-# don't add two equal consecutive commands in bash history (add just one)
+# bash: don't add two equal consecutive commands in bash history (add just one)
 addenv HISTCONTROL "ignoreboth" bash
+
+# zsh: commands beginning with blank spaces doesn't go to the history
+addenv HIST_IGNORE_SPACE zsh
 
 # user scripts/programs
 addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"

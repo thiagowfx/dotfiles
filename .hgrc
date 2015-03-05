@@ -1,7 +1,7 @@
 # -*- conf -*-
 
 [ui]
-username = Thiago Perrotta <thiagoperrotta95@gmail.com>
+username = Thiago Perrotta <perrotta.thiago@poli.ufrj.br>
 verbose = True
 
 [extensions]
