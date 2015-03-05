@@ -52,6 +52,12 @@ echo "${time} ${rx} ${tx}" > "${path}"
 old=(${old//;/ })
 time_diff=$(( $time - ${old[0]} ))
 
+# stores what will be printed
+_output=
+
+# set to 1 if either upload or download speed is greater than or equal to 1MB
+_megs=0
+  
 # sanity check: has a positive amount of time passed
 if [[ "${time_diff}" -gt 0 ]]; then
   # calc bytes transferred, and their rate in byte/s
@@ -66,20 +72,27 @@ if [[ "${time_diff}" -gt 0 ]]; then
   # incoming
   rx_kib=$(( $rx_rate >> 10 ))
   if [[ "$rx_rate" -gt 1048576 ]]; then
-    printf '%s M↓' "`echo "scale=1; $rx_kib / 1024" | bc`"
+    _output="$_output$(printf '%s M↓' "`echo "scale=1; $rx_kib / 1024" | bc`") "
+    _megs=1
   else
-    echo -n "${rx_kib} K↓"
+    _output="$_output$( echo -n "${rx_kib} K↓") "
   fi
-
-  echo -n " "
 
   # outgoing
   tx_kib=$(( $tx_rate >> 10 ))
   if [[ "$tx_rate" -gt 1048576 ]]; then
-    printf '%s M↑' "`echo "scale=1; $tx_kib / 1024" | bc`"
+    _output="$_output$(printf '%s M↑' "`echo "scale=1; $tx_kib / 1024" | bc`")"
+    _megs=1
   else
-    echo -n "${tx_kib} K↑"
+    _output="$_output$(echo -n "${tx_kib} K↑")"
   fi
 else
-  echo -n "?"
+    _output=$(echo -n "?")
+fi
+
+echo "$_output"
+if [[ $_megs -eq 1 ]];
+then
+   echo "$_output"
+   echo "#FFFF00"
 fi
