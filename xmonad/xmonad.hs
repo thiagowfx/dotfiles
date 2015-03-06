@@ -1,6 +1,5 @@
 import XMonad
 import XMonad.Util.Replace
-import Data.Map as M
 
 -- default terminal program
 myTerminal = "urxvt"
