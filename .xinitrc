@@ -2,7 +2,6 @@
 #
 # Example usage: 
 #   WM=i3 startx
-#   WM=cinnamon startx
 # Use either xinit or startx.
 #
 
@@ -58,6 +57,8 @@ startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 # Xmodmap
 startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
+
+# WM: The window manager to be started.
 case $WM in
   awesome           ) exec awesome;;
   bspwm             ) exec bspwm;;
@@ -82,8 +83,5 @@ case $WM in
   xfce|xfce4        ) exec startxfce4;;
   xmonad            ) exec xmonad;;
   windowmaker       ) exec wmaker;;
-  *                 ) command -v i3 &>/dev/null && exec i3 || { 
-    echo "Error: i3 not found on your system"
-    return 1
-  };;
+  *                 ) exec "$WM";;
 esac
