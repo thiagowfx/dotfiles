@@ -61,6 +61,8 @@ startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 startprog "xsetroot -cursor_name left_ptr" xsetroot
 
 # WM: The window manager to be started.
+WM=${WM:-i3}
+
 case $WM in
   awesome           ) exec awesome;;
   bspwm             ) exec bspwm;;
