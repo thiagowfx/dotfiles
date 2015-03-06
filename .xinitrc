@@ -17,6 +17,7 @@ fi
 # start a program automatically if 
 # 1) it is installed on the system
 # 2) an (optional) file provided as argument exists on the system
+# 3) it is not runing already
 #
 # Arguments:
 #   $1: what should be executed
@@ -25,6 +26,7 @@ fi
 #
 startprog() {
   [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
+  command -v pidof &>/dev/null && pidof "$2" &>/dev/null && return
   [[ "x$3" != "x" ]] && [ ! -e "$3" ] && return
   eval "$1" &
 }
