@@ -3,6 +3,11 @@ dotfiles
 
 [![Build Status](https://travis-ci.org/thiagowfx/dotfiles.svg?branch=master)](https://travis-ci.org/thiagowfx/dotfiles)
 
+Description
+-----------
+
+Optimized for **Arch Linux**, **rxvt-unicode** and **i3** window manager.
+
 License
 -------
 Copyright (C) 2013-2015 Thiago Perrotta
