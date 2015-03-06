@@ -57,6 +57,8 @@ startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 # Xmodmap
 startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
+# X cursor
+startprog "xsetroot -cursor_name left_ptr" xsetroot
 
 # WM: The window manager to be started.
 case $WM in
