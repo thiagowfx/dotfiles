@@ -24,8 +24,9 @@ fi
 #   $3: an optional file (full-path) (e.g. $HOME/.vimrc)
 #
 startprog() {
+  [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
   [[ "x$3" != "x" ]] && [ ! -e "$3" ] && return
-  command -v "$2" &>/dev/null && "$1" &
+  eval "$1" &
 }
 
 # compton (desktop composition)
