@@ -76,7 +76,7 @@ addenv PATH "$HOME/.bin/ruby:$PATH" "" "$HOME/.bin/ruby"
 addenv VISUAL "$EDITOR"
 
 # wine environment configuration
-addenv WINEARCH "win64" wine
+addenv WINEARCH "win32" wine
 addenv WINEDEBUG "fixme-all,warn+all" wine
 addenv WINEDLLOVERRIDES "winemenubuilder.exe=d" wine
 addenv WINEPREFIX "$HOME/.wine" wine
@@ -329,7 +329,7 @@ _wget-pdf() {
 addtemplate wget-pdf wget
 
 # enhance a wine's WINEPREFIX by bootstrapping some programs with winetricks
-_winetricks-boostrap() {
+_winetricks-bootstrap() {
     winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run
 }
 addtemplate winetricks-bootstrap winetricks
@@ -341,6 +341,11 @@ _world() {
     [ -e /etc/ubuntu-release ] && sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade && return
 }
 addtemplate world
+
+_world-aur() {
+    command -v packer &>/dev/null && packer -Syu && return
+}
+addtemplate world-aur
 
 # xrandr turn on hdmi for laptop
 _xrandr-laptop-hdmi-on() {
