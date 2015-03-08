@@ -69,9 +69,6 @@ addenv HIST_IGNORE_SPACE zsh
 # user scripts/programs
 addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
 
-# ruby programs (through rubygems)
-addenv PATH "$HOME/.bin/ruby:$PATH" "" "$HOME/.bin/ruby"
-
 # system-wide editor
 addenv VISUAL "$EDITOR"
 
