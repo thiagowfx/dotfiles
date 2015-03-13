@@ -58,7 +58,7 @@ addenv ASPROOT "$HOME/.asp" asp
 addenv EDITOR "vim" vim
 
 # enable colors for google test
-addenv GTEST_COLOR "YES" gtest
+addenv GTEST_COLOR "YES"
 
 # bash: don't add two equal consecutive commands in bash history (add just one)
 addenv HISTCONTROL "ignoreboth" bash
