@@ -12,10 +12,8 @@
 # mod4 is the win / super key
 set $mod Mod4
 set $Alt Mod1
-# set $I3lock i3lock -i ~/.lockscreen.png
 set $I3lock i3lock-wrapper -l
 set $FileManager pcmanfm
-set $TextEditor subl3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -32,9 +30,6 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
-
-# start a text editor
-bindsym $mod+Shift+Return exec $TextEditor
 
 # start a file manager
 bindsym $mod+BackSpace exec $FileManager
