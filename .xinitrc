@@ -33,6 +33,9 @@ startprog() {
 # compton (desktop composition)
 startprog "compton -b" compton
 
+# file manager as daemon
+startprog "pcmanfm -d" pcmanfm
+
 # pulseaudio
 startprog "start-pulseaudio-x11" pulseaudio
 

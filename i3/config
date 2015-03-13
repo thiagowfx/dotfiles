@@ -12,8 +12,8 @@
 # mod4 is the win / super key
 set $mod Mod4
 set $Alt Mod1
-# set $I3lock i3lock -c 222222
-set $I3lock i3lock -i ~/.lockscreen.png
+# set $I3lock i3lock -i ~/.lockscreen.png
+set $I3lock i3lock-wrapper -l
 set $FileManager pcmanfm
 set $TextEditor subl3
 
@@ -224,7 +224,6 @@ for_window [class="URxvt"] border 1pixel
 # windows that should float
 for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
-for_window [class="(?i)tucano*"] floating enable
 
 # programs with specific workspaces
 assign [class="Hexchat"] $W09
