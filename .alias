@@ -288,9 +288,13 @@ function _proxy-on() {
     echo -n "server: "; read server
     echo -n "port: "; read port
     export http_proxy="http://$pre$server:$port/"
+    export HTTP_PROXY="http://$pre$server:$port/"
     export https_proxy=$http_proxy
+    export HTTPS_PROXY=$http_proxy
     export ftp_proxy=$http_proxy
+    export FTP_PROXY=$http_proxy
     export rsync_proxy=$http_proxy
+    export RSYNC_PROXY=$http_proxy
 }
 addtemplate proxy-on
 
