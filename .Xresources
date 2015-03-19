@@ -34,7 +34,7 @@ URxvt.url-select.underline: true
 
 !
 ! urxvt colors
-! 
+!
 ! felixonmars style @ http://felixc.at/URxvt
 !
 urxvt.color1:  #cc0000
