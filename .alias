@@ -51,6 +51,8 @@ addtemplate() {
 # environment variables
 #
 
+addenv _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
 # asp (https://github.com/falconindy/asp) -- for Arch Linux
 addenv ASPROOT "$HOME/.asp" asp
 
@@ -169,9 +171,21 @@ addtemplate adbsync adb
 
 # ffmpeg x11 screencasting
 _ffmpeg-screencast() {
-    ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 $HOME/ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mpg
+    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 $HOME/ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
 }
 addtemplate ffmpeg-screencast ffmpeg
+
+# ffmpeg x11 screencasting with audio
+_ffmpeg-screencast-audio() {
+    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 $HOME/ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
+}
+addtemplate ffmpeg-screencast-audio ffmpeg
+
+# ffmpeg clean video
+_ffmpeg-clean-video() {
+    ffmpeg -ss 10 -t 120 -i "$1" -acodec copy -vcodec copy "$2"
+}
+addtemplate ffmpeg-clean-video ffmpeg
 
 # chroot: gentoo style
 _gentoo-chroot() {
