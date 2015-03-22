@@ -33,9 +33,6 @@ startprog() {
 # compton (desktop composition)
 startprog "compton -b" compton
 
-# file manager as daemon
-startprog "pcmanfm -d" pcmanfm
-
 # pulseaudio
 startprog "start-pulseaudio-x11" pulseaudio
 
@@ -72,7 +69,7 @@ case $WM in
   catwm             ) exec catwm;;
   cinnamon          ) exec cinnamon-session;;
   dwm               ) exec dwm;;
-  e17               ) exec enlightenment_start;;
+  e17|enlightenment ) exec enlightenment_start;;
   ede               ) exec startede;;
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
