@@ -58,7 +58,15 @@ startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
 # X cursor
+# Needed for some window managers (e.g. xmonad)
 startprog "xsetroot -cursor_name left_ptr" xsetroot
+
+# X keymap
+# Can be permanently set by using: localectl set-x11-keymap (part of systemd)
+startprog "setxkbmap br" setxkbmap
+
+# icons on the desktop for tiling window managers
+startprog "idesk" idesk "$HOME/.idesktop"
 
 # WM: The window manager to be started.
 WM=${WM:-i3}
