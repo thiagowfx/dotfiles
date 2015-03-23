@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export TERMINAL="terminology"
+command -v terminology &>/dev/null && export TERMINAL="terminology"
 
 # GnuPG: password only once per session
 export GPG_TTY=$(tty)
