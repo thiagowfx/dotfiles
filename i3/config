@@ -117,11 +117,12 @@ bindsym $mod+p workspace prev
 #
 # named workspaces
 # 
+set $W01 01:www
 set $W09 09:IRC
 set $W10 10:Music ♪
 
 # switch to workspace
-bindsym $mod+1 workspace 1
+bindsym $mod+1 workspace $W01
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
@@ -133,7 +134,7 @@ bindsym $mod+9 workspace $W09
 bindsym $mod+0 workspace $W10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+1 move container to workspace $W01
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
@@ -211,7 +212,7 @@ bindsym $mod+m scratchpad show
 #
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [window_role="disposable"] floating enable
+for_window [window_role="disposable"] floating enable # this is non-standard
 
 # no border in those windows
 for_window [class="Chromium"] border 1pixel
@@ -223,12 +224,13 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
 
 # programs with specific workspaces
+assign [window_role="browser"] $W01
 assign [class="Hexchat"] $W09
 assign [class="Telegram"] $W09
 assign [class="Audacious"] $W10
 assign [class="Spotify"] $W10
 
-# autostart programs in specific workspaces
+# autostart some programs (for specific workspaces) --> it is better to use .xinitrc for that
 # exec --no-startup-id hexchat
 
 #
