@@ -17,14 +17,14 @@ fi
 
 cat >"$1.lnk" <<HERE
 table Icon
-  Caption: "${2:-$1}"
-  ToolTip.Caption: "${3:-$1}"
-  Icon: "$4"
+  Caption: ${2:-$1}
+  ToolTip.Caption: ${3:-$1}
+  Icon: $4
   Width: 32
   Height: 32
   X: 500
   Y: 500
-  Command[0]: "$1"
+  Command[0]: $1
 end
 HERE
-echo "--> created "$1".lnk"
+echo "--> created $1.lnk"
