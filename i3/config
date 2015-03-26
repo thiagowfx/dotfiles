@@ -17,7 +17,7 @@ set $FileManager nemo --no-desktop
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -29,10 +29,11 @@ font pango:Fira Sans 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal -B --role="disposable"
 
 # start a file manager
-bindsym $mod+BackSpace exec $FileManager
+bindsym $mod+BackSpace exec --no-startup-id $FileManager
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -96,7 +97,7 @@ bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
 # rename current workspace
-bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (n:str): '
+bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (#:name): '
 
 #
 # misc settings
@@ -174,7 +175,7 @@ mode "$mode_system" {
   bindsym l       exec $I3lock, mode "default"
   bindsym e       exec i3-msg exit
   bindsym s       exec $I3lock && notify-send "SYSTEM: Suspending..." && systemctl suspend, mode "default"
-  bindsym q       exec notify-send "SYSTEM: Hibernating (quick)..." && systemctl hibernate, mode "default"
+  bindsym q       exec notify-send "SYSTEM: **quick** Hibernating **quick**..." && systemctl hibernate, mode "default"
   bindsym h       exec $I3lock && notify-send "SYSTEM: Hibernating..." && systemctl hibernate, mode "default"
   bindsym r       exec notify-send "SYSTEM: Rebooting..." && systemctl reboot
   bindsym Shift+s exec notify-send "SYSTEM: Powering off..." && systemctl poweroff
@@ -190,15 +191,15 @@ bar {
         position top
         mode dock
 
-colors {
-	separator  #888888
-	background #333333
-	statusline #FFFFFF
-	focused_workspace  #4E9C00 #4E9C00 #FFFFFF
-	active_workspace   #333333 #333333 #FFFFFF
-	inactive_workspace #333333 #333333 #888888
-	urgent_workspace   #C20000 #C20000 #FFFFFF
-}
+        colors {
+            separator  #888888
+            background #333333
+            statusline #FFFFFF
+            focused_workspace  #4E9C00 #4E9C00 #FFFFFF
+            active_workspace   #333333 #333333 #FFFFFF
+            inactive_workspace #333333 #333333 #888888
+            urgent_workspace   #C20000 #C20000 #FFFFFF
+        }
 }
 
 # scratchpad
@@ -210,18 +211,20 @@ bindsym $mod+m scratchpad show
 #
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="disposable"] floating enable
 
 # no border in those windows
 for_window [class="Chromium"] border 1pixel
 for_window [class="Emacs"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 
-# windows that should float
+# windows that should always float
 for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
 
 # programs with specific workspaces
 assign [class="Hexchat"] $W09
+assign [class="Telegram"] $W09
 assign [class="Audacious"] $W10
 assign [class="Spotify"] $W10
 
