@@ -1,0 +1,11 @@
+table Icon
+  Caption: Calibre
+  ToolTip.Caption: Calibre Ebook Manager
+  Icon: /usr/share/pixmaps/calibre-gui.png
+  Width: 32
+  Height: 32
+  X: 27
+  Y: 699
+  Command[0]: calibre
+end
+

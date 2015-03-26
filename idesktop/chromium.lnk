@@ -1,0 +1,11 @@
+table Icon
+  Caption: Chromium
+  ToolTip.Caption: Google's OSS Web Browser
+  Icon: /usr/share/icons/hicolor/32x32/apps/chromium.png
+  Width: 32
+  Height: 32
+  X: 37
+  Y: 39
+  Command[0]: chromium
+end
+

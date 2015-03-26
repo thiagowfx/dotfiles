@@ -1,0 +1,11 @@
+table Icon
+  Caption: Nemo
+  ToolTip.Caption: Nemo File Manager
+  Icon: /usr/share/icons/hicolor/32x32/apps/nemo.png
+  Width: 32
+  Height: 32
+  X: 1287
+  Y: 39
+  Command[0]: nemo
+end
+

@@ -1,0 +1,11 @@
+table Icon
+  Caption: LuaKit
+  ToolTip.Caption: LuaKit Web Browser
+  Icon: /usr/share/pixmaps/luakit.png
+  Width: 32
+  Height: 32
+  X: 37
+  Y: 179
+  Command[0]: luakit
+end
+
