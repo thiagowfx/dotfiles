@@ -120,7 +120,7 @@ addalias grep "grep --color=always" grep
 addalias hexdump "hexdump -C" hexdump
 
 # more efficient make
-addalias make "time make -j$(nproc) -l$(nproc)" make
+addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
 
 # more verbose netstat
 addalias netstat "netstat -pln" netstat
@@ -168,6 +168,13 @@ EOF
     adb push "$1" "${TARGET_DIR}/$(basename $1)" && echo "Files successfully copied."
 }
 addtemplate adbsync adb
+
+# cmake clean build directory
+_cmake-clean() {
+    [[ -d ../build ]] && cd ..
+    rm -rf build && mkdir build && cd build
+}
+addtemplate cmake-clean cmake
 
 # pcap file visualization
 _ctf-pcap-view-tshark() {
@@ -233,6 +240,12 @@ _ip() {
 }
 addtemplate ip dig
 
+# apt-get like build-dep
+_pacman-build-dep() {
+    sudo pacman -S $(expac -S "%E" "$@")
+}
+addtemplate pacman-build-dep pacman
+
 # get extra packages installed on the pacman-based system
 _pacman-extrapkgs() {
     comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)
@@ -240,7 +253,7 @@ _pacman-extrapkgs() {
 addtemplate pacman-extrapkgs pacman
 
 # makepkg: clean out build leftovers
-_makepkgclean() {
+_makepkg-clean() {
   echo "--> Cleaning up makepkg files..."
   makepkg -code
 
@@ -250,7 +263,7 @@ _makepkgclean() {
   echo "--> Removing any created packages..."
   find . -name '*.pkg.tar.xz' -exec rm {} \;
 }
-addtemplate makepkgclean makepkg
+addtemplate makepkg-clean makepkg
 
 # pacman: given a specific full-path file, get a diff between he
 # current one on the system and the one in its respective package
