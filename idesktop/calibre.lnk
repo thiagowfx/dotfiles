@@ -4,8 +4,8 @@ table Icon
   Icon: /usr/share/pixmaps/calibre-gui.png
   Width: 32
   Height: 32
-  X: 27
-  Y: 699
+  X: 1287
+  Y: 179
   Command[0]: calibre
 end
 

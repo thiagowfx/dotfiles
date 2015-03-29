@@ -1,0 +1,11 @@
+table Icon
+  Caption: QtCreator
+  ToolTip.Caption: QtCreator IDE
+  Icon: /usr/share/icons/hicolor/32x32/apps/QtProject-qtcreator.png
+  Width: 32
+  Height: 32
+  X: 1297
+  Y: 629
+  Command[0]: qtcreator
+end
+

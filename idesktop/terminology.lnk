@@ -5,7 +5,7 @@ table Icon
   Width: 32
   Height: 32
   X: 1287
-  Y: 119
+  Y: 109
   Command[0]: terminology
 end
 
