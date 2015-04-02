@@ -66,7 +66,7 @@ startprog "xsetroot -cursor_name left_ptr" xsetroot
 startprog "setxkbmap br" setxkbmap
 
 # icons on the desktop for tiling window managers
-startprog "idesk" idesk "$HOME/.idesktop"
+# startprog "idesk" idesk "$HOME/.idesktop"
 
 # WM: The window manager to be started.
 WM=${WM:-i3}
