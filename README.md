@@ -1,12 +1,10 @@
 dotfiles
 ========
 
-[![Build Status](https://travis-ci.org/thiagowfx/dotfiles.svg?branch=master)](https://travis-ci.org/thiagowfx/dotfiles)
-
 Description
 -----------
 
-Optimized for **Arch Linux**, **rxvt-unicode** and **i3** window manager.
+Those files are optimized for **Arch Linux** and **i3wm**, besides my own needs.
 
 License
 -------

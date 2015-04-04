@@ -7,9 +7,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/thiagowfx/vim
-[submodule "assert.sh"]
-	path = assert.sh
-	url = https://github.com/lehmannro/assert.sh.git
 [submodule "emacs"]
 	path = emacs
 	url = https://github.com/thiagowfx/emacs
