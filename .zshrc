@@ -1,1 +1,1 @@
-grml-zsh-config/etc/skel/.zshrc
+grml-etc-core/etc/skel/.zshrc

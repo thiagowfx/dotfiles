@@ -2,7 +2,7 @@
 	path = gdbinit
 	url = https://github.com/gdbinit/gdbinit
 [submodule "grml-zsh-config"]
-	path = grml-zsh-config
+	path = grml-etc-core
 	url = git://git.grml.org/grml-etc-core.git
 [submodule "vim"]
 	path = vim
