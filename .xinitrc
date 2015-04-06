@@ -36,7 +36,7 @@ startprog "compton -b" compton
 # pulseaudio
 startprog "start-pulseaudio-x11" pulseaudio
 
-# redshift
+# redshift (color temperature adjustment)
 startprog "redshift -l -23:-43" redshift
 
 # network manager applet
@@ -45,7 +45,7 @@ startprog "nm-applet" nm-applet
 # syndaemon: no touchpad clicking while typing
 startprog "syndaemon -i 1 -t -k -d" syndaemon
 
-# unclutter: hide the mouse when it is idle for a while
+# unclutter: hide the mouse when it gets idle for a while
 startprog "unclutter" unclutter
 
 # feh: set desktop background
@@ -57,16 +57,17 @@ startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 # Xmodmap
 startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
-# X cursor
-# Needed for some window managers (e.g. xmonad)
+# X cursor: needed for some window managers (e.g. xmonad)
 startprog "xsetroot -cursor_name left_ptr" xsetroot
 
-# X keymap
-# Can be permanently set by using: localectl set-x11-keymap (part of systemd)
+# X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
 startprog "setxkbmap br" setxkbmap
 
+# X11 clipboard syncing
+startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
+
 # icons on the desktop for tiling window managers
-# startprog "idesk" idesk "$HOME/.idesktop"
+startprog "idesk" idesk "$HOME/.idesktop"
 
 # WM: The window manager to be started.
 WM=${WM:-i3}
