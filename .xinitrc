@@ -61,7 +61,7 @@ startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 startprog "xsetroot -cursor_name left_ptr" xsetroot
 
 # X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
-startprog "setxkbmap br" setxkbmap
+startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
 
 # X11 clipboard syncing
 startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
