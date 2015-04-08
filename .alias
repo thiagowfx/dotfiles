@@ -68,6 +68,9 @@ addenv HISTCONTROL "ignoreboth" bash
 # zsh: commands beginning with blank spaces doesn't go to the history
 addenv HIST_IGNORE_SPACE zsh
 
+# less: with colors
+addenv LESS "-R" less
+
 # user scripts/programs
 addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
 
