@@ -71,6 +71,9 @@ addenv HIST_IGNORE_SPACE zsh
 # less: with colors
 addenv LESS "-R" less
 
+# pager
+addenv PAGER "vimpager" vimpager
+
 # user scripts/programs
 addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
 
