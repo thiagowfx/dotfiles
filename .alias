@@ -439,9 +439,3 @@ _ytdl-video() {
     youtube-dl --continue --title --restrict-filenames "$@"
 }
 addtemplate ytdl-video youtube-dl
-
-# remember me of those utilities
-_remember-me() {
-    echo "- dtrx for universal extraction"
-}
-addtemplate remember-me
