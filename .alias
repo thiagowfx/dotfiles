@@ -38,12 +38,17 @@ addalias() {
 # A program can be optionally specified as second argument; if it is not found
 # in the PATH, then the template won't be defined.
 #
+# Similarly, you can specify a file as third argument. If the file is not found,
+# then the template won't be defined either.
+#
 # Arguments:
 #  $1: template name
 #  $2: a program (e.g. vim or /usr/bin/vim)
+#  $3: a file (e.g. /boot/grub/grub.cfg)
 #
 addtemplate() {
   [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
+  [[ "x$3" != "x" ]] && [ ! -e "$3" ] && return
   alias "t-$1"="_$1"
 }
 
@@ -369,6 +374,12 @@ _rot13() {
     echo "$@" | tr A-Za-z N-ZA-Mn-za-m
 }
 addtemplate rot13 tr
+
+# update grub entries
+_update-grub() {
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+addtemplate update-grub grub-mkconfig "/boot/grub/grub.cfg"
 
 # wget all pdfs from a domain
 _wget-pdf() {
