@@ -213,7 +213,7 @@ addtemplate ffmpeg-screencast-audio ffmpeg
 
 # ffmpeg clean video
 _ffmpeg-clean-video() {
-    ffmpeg -ss 10 -t 120 -i "$1" -acodec copy -vcodec copy "$2"
+    ffmpeg -ss "$2" -t "$3" -i "$1" -acodec copy -vcodec copy "$1.out"
 }
 addtemplate ffmpeg-clean-video ffmpeg
 
@@ -227,10 +227,10 @@ addtemplate generate-random-password dd
 _gentoo-chroot() {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
     [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
-    sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
-    sudo mount -o bind /proc "$1"/proc
-    sudo mount --rbind /dev  "$1"/dev
-    sudo mount --rbind /sys  "$1"/sys
+    sudo cp -L /etc/resolv.conf "$1/etc/resolv.conf"
+    sudo mount -o bind /proc "$1/proc"
+    sudo mount --rbind /dev  "$1/dev"
+    sudo mount --rbind /sys  "$1/sys"
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 addtemplate gentoo-chroot chroot
@@ -264,11 +264,8 @@ _makepkg-clean() {
   echo "--> Cleaning up makepkg files..."
   makepkg -code
 
-  echo "--> Removing any left out AUR tarballs..."
-  find . -name '*.src.tar.gz' -exec rm {} \;
-
-  echo "--> Removing any created packages..."
-  find . -name '*.pkg.tar.xz' -exec rm {} \;
+  echo "--> Removing any left out AUR tarballs or packages..."
+  find . -name '*.src.tar.gz' -or -name '*.pkg.tar.xz' -exec rm {} \;
 }
 addtemplate makepkg-clean makepkg
 
@@ -277,9 +274,9 @@ addtemplate makepkg-clean makepkg
 _pacman-diff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
-  Purpose: get the changes between this file now and in the upstream package
-  Usage: qkkdiff-file <file>
-  Example: qkkdiff-file /etc/pacman.conf"
+          Purpose: get the changes between this file now and in the upstream package
+          Usage: qkkdiff-file <file>
+          Example: qkkdiff-file /etc/pacman.conf"
 EOF
     elif [[ -f "$1" ]]; then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
@@ -297,9 +294,9 @@ addtemplate pacman-diff-file pacman
 _pacman-diff-pkg() {
     if [[ "$1" == "" ]]; then
         echo <<EOF
-  Purpose: get the changes between the upstream package and the files on the filesystem
-  Usage: qkkdiff <package>
-  Example: qkkdiff pacman
+          Purpose: get the changes between the upstream package and the files on the filesystem
+          Usage: qkkdiff <package>
+          Example: qkkdiff pacman
 EOF
     elif ! pacman -Q "$1"; then
         return 1
