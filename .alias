@@ -211,12 +211,6 @@ _ffmpeg-screencast-audio() {
 }
 addtemplate ffmpeg-screencast-audio ffmpeg
 
-# ffmpeg clean video
-_ffmpeg-clean-video() {
-    ffmpeg -ss "$2" -t "$3" -i "$1" -acodec copy -vcodec copy "$1.out"
-}
-addtemplate ffmpeg-clean-video ffmpeg
-
 # generate random password
 _generate-random-password() {
     dd if=/dev/urandom bs=1 count="${1:-16}" 2>/dev/null | base64
