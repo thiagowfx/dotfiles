@@ -259,7 +259,7 @@ _makepkg-clean() {
   makepkg -code
 
   echo "--> Removing any left out AUR tarballs or packages..."
-  find . -name '*.src.tar.gz' -or -name '*.pkg.tar.xz' -exec rm {} \;
+  find . -name '*.src.tar.gz' -or -name '*.pkg.tar.xz' -or -name '*.pkg.tar' -exec rm {} \;
 }
 addtemplate makepkg-clean makepkg
 
