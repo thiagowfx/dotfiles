@@ -7,3 +7,6 @@
 [submodule "emacs"]
 	path = emacs
 	url = https://github.com/thiagowfx/emacs
+[submodule "grml-desktop"]
+	path = grml-desktop
+	url = https://github.com/grml/grml-desktop
