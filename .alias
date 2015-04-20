@@ -141,7 +141,7 @@ addalias netstat "netstat -pln" netstat
 addalias packer "packer --noconfirm" packer
 
 # more intuitive pgrep
-addalias pgrep "pgrep -afl" pgrep
+addalias pgrep "pgrep -fl" pgrep
 
 # more useful xclip
 addalias xclip "xclip -selection clipboard" xclip
