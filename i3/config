@@ -96,9 +96,6 @@ bindsym $mod+a focus parent
 # focus the child (baby) container
 bindsym $mod+b focus child
 
-# rename current workspace
-bindsym $mod+z exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'new name (#:name): '
-
 #
 # misc settings
 #
