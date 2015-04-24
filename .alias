@@ -375,6 +375,12 @@ _rot13() {
 }
 addtemplate rot13 tr
 
+# test if your microphone is working
+_test-microphone() {
+    arecord -vvv -f dat /dev/null
+}
+addtemplate test-microphone arecord
+
 # update grub entries
 _update-grub() {
     sudo grub-mkconfig -o /boot/grub/grub.cfg
