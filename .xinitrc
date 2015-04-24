@@ -67,9 +67,6 @@ startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
 # startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
 startprog "parcellite" parcellite
 
-# icons on the desktop for tiling window managers
-startprog "idesk" idesk "$HOME/.idesktop"
-
 # WM: The window manager to be started.
 WM=${WM:-i3}
 
