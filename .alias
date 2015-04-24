@@ -246,6 +246,12 @@ _ip() {
 }
 addtemplate ip dig
 
+# test if your microphone is working
+_microphone-test() {
+    arecord -vvv -f dat /dev/null
+}
+addtemplate microphone-test arecord
+
 # apt-get like build-dep
 _pacman-build-dep() {
     sudo pacman -S $(expac -S "%E" "$@")
@@ -374,12 +380,6 @@ _rot13() {
     echo "$@" | tr A-Za-z N-ZA-Mn-za-m
 }
 addtemplate rot13 tr
-
-# test if your microphone is working
-_test-microphone() {
-    arecord -vvv -f dat /dev/null
-}
-addtemplate test-microphone arecord
 
 # update grub entries
 _update-grub() {
