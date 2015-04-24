@@ -34,7 +34,7 @@ startprog() {
 startprog "compton -b" compton
 
 # pulseaudio
-startprog "start-pulseaudio-x11" pulseaudio
+startprog "start-pulseaudio-x11" start-pulseaudio-x11
 
 # redshift (color temperature adjustment)
 startprog "redshift -l -23:-43" redshift
