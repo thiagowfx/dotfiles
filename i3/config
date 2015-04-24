@@ -23,7 +23,7 @@ set $FileManager nemo --no-desktop
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:Fira Sans 9 
+font pango:Fira Sans 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -48,7 +48,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
-bindsym $mod+k focus down 
+bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+ccedilla focus right
 
@@ -96,7 +96,7 @@ bindsym $mod+a focus parent
 # focus the child (baby) container
 bindsym $mod+b focus child
 
-#
+
 # misc settings
 #
 # focus_follows_mouse no
@@ -110,6 +110,10 @@ bindsym $mod+n workspace next
 # switch to previous workspace
 bindsym $mod+Shift+n workspace prev
 bindsym $mod+p workspace prev
+
+bindsym $mod+apostrophe exec --no-startup-id quickswitch.py
+bindsym $mod+Tab exec --no-startup-id quickswitch.py
+bindsym $Alt+Tab exec --no-startup-id quickswitch.py
 
 #
 # named workspaces
