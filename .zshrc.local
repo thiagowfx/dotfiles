@@ -28,6 +28,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 # z
 [[ -f /usr/lib/z.sh ]] && source /usr/lib/z.sh
 
+# autojump
+[[ -f /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
+
 # enable some options
 setopt appendhistory
 setopt beep

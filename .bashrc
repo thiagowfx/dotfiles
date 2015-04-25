@@ -7,6 +7,9 @@
 [[ -f $HOME/.alias ]] && source $HOME/.alias
 alias ls="ls -F --color=always"
 
+# autojump
+[[ -f /etc/profile.d/autojump.bash ]] && source /etc/profile.d/autojump.bash
+
 # system bashrc and completion for sudo
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
