@@ -135,9 +135,6 @@ addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
 # more verbose netstat
 addalias netstat "netstat -pln" netstat
 
-# automatic packer
-addalias packer "packer --noconfirm" packer
-
 # more intuitive pgrep
 addalias pgrep "pgrep -fl" pgrep
 
@@ -406,7 +403,7 @@ _world() {
 addtemplate world
 
 _world-aur() {
-    command -v packer &>/dev/null && packer -Syu && return
+    command -v apacman &>/dev/null && apacman -Syu && return
 }
 addtemplate world-aur
 

@@ -256,7 +256,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
 # For PulseAudio: an alternative, using Graysky's pulseaudio-ctl
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && pkill -RTMIN+1 '^i3blocks'
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && pkill -RTMIN+1 '^i3blocks'
- 
+
 bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+1 '^i3blocks'
 bindsym Shift+XF86AudioLowerVolume exec playerctl previous
 bindsym Shift+XF86AudioRaiseVolume exec playerctl next
