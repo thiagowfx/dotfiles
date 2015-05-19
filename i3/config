@@ -237,8 +237,8 @@ assign [class="Spotify"] $W10
 #
 # custom hotkeys
 #
-# bindsym Print exec --no-startup-id scrot '%F_%H%M%S_$wx$h_scrot.png' --exec 'mv $f /$HOME/Pictures/' && notify-send 'Took a SS'
-bindsym Print exec --no-startup-id gnome-screenshot --file=$HOME/Pictures/$(date "+%Y-%m-%d-%H.%M.%S.png") && notify-send 'Took a SS'
+# bindsym Print exec --no-startup-id gnome-screenshot --file=$HOME/Pictures/$(date "+%Y-%m-%d_%H.%M.%S.png") && notify-send 'Took a SS'
+bindsym Print exec --no-startup-id scrot '%F_%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures' && notify-send 'Took a SS'
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
 
@@ -258,12 +258,12 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && pkill -RT
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && pkill -RTMIN+1 '^i3blocks'
 
 bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+1 '^i3blocks'
-bindsym Shift+XF86AudioLowerVolume exec playerctl previous
-bindsym Shift+XF86AudioRaiseVolume exec playerctl next
-bindsym Shift+XF86AudioMute exec playerctl play-pause
+bindsym Shift+XF86AudioLowerVolume exec playerctl previous && pkill -RTMIN+2 '^i3blocks'
+bindsym Shift+XF86AudioRaiseVolume exec playerctl next && pkill -RTMIN+2 '^i3blocks'
+bindsym Shift+XF86AudioMute exec playerctl play-pause && pkill -RTMIN+2 '^i3blocks'
 
 #
-# To modify colors, use j4-make-config.
+# To modify colors, use j4-make-config (third-party tool).
 #
 # class                 border  backgr. text    indicator
 client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF

@@ -22,8 +22,7 @@ INTERFACE="${BLOCK_INSTANCE:-eth0}"
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
     echo "$INTERFACE down"
-    echo "$INTERFACE down"
-    echo "#FF0000"
+    echo "\n#FF0000"
     exit 0
 fi
 
@@ -93,6 +92,5 @@ fi
 echo "$_output"
 if [[ $_megs -eq 1 ]];
 then
-   echo "$_output"
-   echo "#FFFF00"
+   echo "\n#FFFF00"
 fi
