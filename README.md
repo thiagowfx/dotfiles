@@ -4,7 +4,7 @@ dotfiles
 Description
 -----------
 
-Those files are optimized for **Arch Linux** and **i3wm**, besides my own needs.
+Those files are optimized for **Arch Linux** and **i3wm**, base on my own needs.
 
 License
 -------
