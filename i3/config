@@ -172,11 +172,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # log out prompt
-set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (q)uick hibernate, (r)eboot, Shift+(s)hutdown
+set $mode_system (l)ock, (e)logout, hybrid (s)leeping, (h)ibernate, (q)uick hibernate, (r)eboot, Shift+(s)hutdown
 mode "$mode_system" {
   bindsym l       exec $I3lock, mode "default"
   bindsym e       exec i3-msg exit
-  bindsym s       exec $I3lock && notify-send "SYSTEM: Suspending..." && systemctl suspend, mode "default"
+  bindsym s       exec $I3lock && notify-send "SYSTEM: Hybrid Sleeping..." && systemctl hybrid-sleep, mode "default"
   bindsym q       exec notify-send "SYSTEM: **quick** Hibernating **quick**..." && systemctl hibernate, mode "default"
   bindsym h       exec $I3lock && notify-send "SYSTEM: Hibernating..." && systemctl hibernate, mode "default"
   bindsym r       exec notify-send "SYSTEM: Rebooting..." && systemctl reboot
