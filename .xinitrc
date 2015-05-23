@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Example usage: 
+# Example usage:
 #   WM=i3 startx
 # Use either xinit or startx.
 #
@@ -57,9 +57,6 @@ startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 # Xmodmap
 startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
-# X cursor: needed for some window managers (e.g. xmonad)
-startprog "xsetroot -cursor_name left_ptr" xsetroot
-
 # X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
 startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
 
@@ -73,26 +70,18 @@ WM=${WM:-i3}
 case $WM in
   awesome           ) exec awesome;;
   bspwm             ) exec bspwm;;
-  catwm             ) exec catwm;;
   cinnamon          ) exec cinnamon-session;;
   dwm               ) exec dwm;;
   e17|enlightenment ) exec enlightenment_start;;
-  ede               ) exec startede;;
   fluxbox           ) exec startfluxbox;;
   gnome             ) exec gnome-session;;
-  hawaii            ) exec hawaii;;
   i3|i3wm           ) exec i3;;
-  icewm             ) exec icewm-session;;
-  jwm               ) exec jwm;;
   kde               ) exec startkde;;
   lxde              ) exec startlxde;;
   mate              ) exec mate-session;;
-  monster           ) exec monsterwm;;
-  notion            ) exec notion;;
   openbox           ) exec openbox-session;;
   unity             ) exec unity;;
   xfce|xfce4        ) exec startxfce4;;
   xmonad            ) exec xmonad;;
-  windowmaker       ) exec wmaker;;
   *                 ) exec "$WM";;
 esac
