@@ -444,3 +444,9 @@ _ytdl-video() {
     youtube-dl --continue --title --restrict-filenames "$@"
 }
 addtemplate ytdl-video youtube-dl
+
+# 7-zip: split a big file into small chunks
+_7z-split() {
+    7z a -v32m -mx0 "$1".7z "$1"
+}
+addtemplate 7z-split 7z
