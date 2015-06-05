@@ -24,6 +24,6 @@
 	tool = vimdiff
 	conflictstyle = diff3
 [mergetool]
-	prompt = true
+	prompt = false
 [sendemail]
 	smtpserver = /usr/bin/sendmail
