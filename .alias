@@ -257,7 +257,7 @@ addtemplate pacman-build-dep pacman
 
 # get extra packages installed on the pacman-based system
 _pacman-extrapkgs() {
-    comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)
+    comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)
 }
 addtemplate pacman-extrapkgs pacman
 
@@ -267,9 +267,9 @@ _makepkg-clean() {
   makepkg -code
 
   echo "--> Removing any left out AUR tarballs or packages..."
-  find . -name '*.src.tar.gz' -exec rm {} \;
-  find . -name '*.pkg.tar' -exec rm {} \;
-  find . -name '*.pkg.tar.xz' -exec rm {} \;
+  find . -name '*.src.tar.gz' -delete
+  find . -name '*.pkg.tar' -delete
+  find . -name '*.pkg.tar.xz' -delete
 }
 addtemplate makepkg-clean makepkg
 
@@ -357,20 +357,14 @@ addtemplate proxy-on
 
 # unset proxy servers
 function _proxy-off(){
-    unset http_proxy
-    unset HTTPS_PROXY
-    unset http_proxy
-    unset HTTP_PROXY
-    unset ftp_proxy
-    unset FTP_PROXY
-    unset rsync_proxy
-    unset RSYNC_PROXY
+    unset http_proxy HTTPS_PROXY http_proxy HTTP_PROXY ftp_proxy FTP_PROXY rsync_proxy RSYNC_PROXY
     echo -e "Proxy environment variables removed."
 }
 addtemplate proxy-off
+
 # ping google.com
 _pingg() {
-    ping google.com
+    ping "${1:-google.com}"
 }
 addtemplate pingg ping
 
@@ -394,34 +388,30 @@ addtemplate wget-pdf wget
 
 # enhance a wine's WINEPREFIX by bootstrapping some programs with winetricks
 _winetricks-bootstrap() {
-    winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run
+    winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run "$@"
 }
 addtemplate winetricks-bootstrap winetricks
 
 # upgrade a Unix system
 _world() {
-    [ -e /etc/arch-release ] && sudo pacman -Syu && return
-    [ -e /etc/gentoo-release ] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
-    [ -e /etc/ubuntu-release ] && sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade && return
+    [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && return
+    [[ -e /etc/gentoo-release ]] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
+    [[ -e /etc/ubuntu-release ]] && sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade && return
 }
 addtemplate world
 
 _world-aur() {
-    command -v apacman &>/dev/null && apacman -Syu && return
+    command -v apacman &>/dev/null && apacman -Syu "$@" && return
 }
 addtemplate world-aur
 
-# xrandr turn on hdmi for laptop
-_xrandr-laptop-hdmi-on() {
-    xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1
-}
-addtemplate xrandr-laptop-hdmi-on xrandr
-
-# xrandr turn off hdmi for laptop
-_xrandr-laptop-hdmi-off() {
+# xrandr turn on/off hdmi for laptop
+_xrandr-laptop-hdmi() {
+    ([[ "$1" == "1" ]] || [[ "$1" == "ON" ]]) && \
+    xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 || \
     xrandr --output HDMI1 --off
 }
-addtemplate xrandr-laptop-hdmi-off xrandr
+addtemplate xrandr-laptop-hdmi xrandr
 
 # xrandr mirror displays (hdmi) for laptop
 _xrandr-laptop-hdmi-mirror() {
@@ -452,3 +442,9 @@ _7z-split() {
     7z a -v32m -mx0 "$1".7z "$1"
 }
 addtemplate 7z-split 7z
+
+# simple HTTP web server for files in current directory
+_httpserver() {
+    python2 -m SimpleHTTPServer "${1:-7777}"
+}
+addtemplate httpserver python2
