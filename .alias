@@ -79,7 +79,6 @@ addenv LESS "-R" less
 # user scripts/programs
 addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
 addenv PATH "$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH" ruby "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
-addenv PATH "$HOME/.lib/spark-1.3.0/bin:$PATH" "" "$HOME/.lib/spark-1.3.0/bin"
 
 # system-wide editor
 addenv VISUAL "$EDITOR"
@@ -137,6 +136,9 @@ addalias netstat "netstat -pln" netstat
 
 # more intuitive pgrep
 addalias pgrep "pgrep -fl" pgrep
+
+# pstree with PIDs
+addalias pstree "pstree -p" pstree
 
 # more useful xclip
 addalias xclip "xclip -selection clipboard" xclip
