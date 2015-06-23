@@ -10,6 +10,7 @@
 	l = commit -a -m "update"
 	p = push
 	st = status
+    # TODO: https://github.com/jfrazelle/dotfiles/blob/master/.gitconfig#L52
 [core]
 	autocrlf = input
 [color]
