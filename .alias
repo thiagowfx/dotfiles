@@ -401,7 +401,7 @@ _world() {
 addtemplate world
 
 _world-aur() {
-    command -v apacman &>/dev/null && apacman -Syu "$@" && return
+    command -v apacman &>/dev/null && apacman --noconfirm -Syu "$@" && return
 }
 addtemplate world-aur
 
