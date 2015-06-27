@@ -374,12 +374,6 @@ _rot13() {
 }
 addtemplate rot13 tr
 
-# update grub entries
-_update-grub() {
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-}
-addtemplate update-grub grub-mkconfig "/boot/grub/grub.cfg"
-
 # wget all pdfs from a domain
 _wget-pdf() {
     wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --
