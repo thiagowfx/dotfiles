@@ -1,1 +1,1 @@
-grml-etc-core/etc/vim/vimrc
+vim/vimrc

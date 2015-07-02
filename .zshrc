@@ -1,1 +1,0 @@
-grml-etc-core/etc/skel/.zshrc

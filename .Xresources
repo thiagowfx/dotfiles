@@ -1,1 +1,50 @@
-grml-desktop/etc/skel/.Xresources
+! font rendering
+Xft.autohint: true
+Xft*antialias: true
+Xft*hinting: true
+Xft.hintstyle: hintslight
+Xft*dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! xterm settings
+xterm*background: #000000
+xterm*foreground: #ffffff
+
+! urxvt settings
+URxvt.depth: 32
+URxvt.background: rgba:1111/1111/1111/eeee
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt.urgentOnBell: true
+URxvt*background: #222222
+URxvt*foreground: #ffffff
+URxvt.scrollBar: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: clipboard,confirm-paste,default,tabbed,url-select
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+URxvt.clipboard.autocopy: true
+URxvt.url-select.button: 1
+URxvt.url-select.launcher: xdg-open
+URxvt.url-select.underline: true
+
+! urxvt colors
+! felixonmars style @ http://felixc.at/URxvt
+urxvt.color1:  #cc0000
+urxvt.color2:  #4e9a06
+urxvt.color3:  #c4a000
+urxvt.color4:  #3465a4
+urxvt.color5:  #75507b
+urxvt.color6:  #06989a
+urxvt.color7:  #d3d7cf
+urxvt.color8:  #555753
+urxvt.color9:  #ef2929
+urxvt.color10: #8ae234
+urxvt.color11: #fce94f
+urxvt.color12: #729fcf
+urxvt.color13: #ad7fa8
+urxvt.color14: #34e2e2
+urxvt.color15: #eeeeec
