@@ -1,0 +1,3 @@
+[submodule ".i3blocks"]
+	path = .i3blocks
+	url = https://github.com/vivien/i3blocks
