@@ -1,0 +1,5 @@
+# system-wide editor
+addenv VISUAL "$EDITOR"
+
+# system-wide editor
+addenv EDITOR "vim" vim

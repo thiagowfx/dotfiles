@@ -1,0 +1,8 @@
+# more efficient make
+addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
+
+# more intuitive cower
+addalias cower "cower --color=always --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"
+
+# I use PulseAudio
+addalias alsamixer "alsamixer -c 0" alsamixer

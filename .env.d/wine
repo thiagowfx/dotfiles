@@ -1,0 +1,5 @@
+# wine environment configuration
+addenv WINEARCH "win32" wine
+addenv WINEDEBUG "fixme-all,warn+all" wine
+addenv WINEDLLOVERRIDES "winemenubuilder.exe=d" wine
+addenv WINEPREFIX "$HOME/.wine" wine

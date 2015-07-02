@@ -1,0 +1,8 @@
+# more verbose basic system commands
+alias cp="cp -v"
+alias ln="ln -v"
+alias mv="mv -v"
+
+# more verbose ch*
+addalias chmod "chmod -v" chmod
+addalias chown "chown -v" chown

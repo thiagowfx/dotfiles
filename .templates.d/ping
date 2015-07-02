@@ -1,0 +1,5 @@
+# ping google.com
+_pingg() {
+    ping "${1:-google.com}"
+}
+addtemplate pingg ping

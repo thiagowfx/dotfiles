@@ -1,0 +1,8 @@
+# less: with colors
+addenv LESS "-R" less
+
+# enable colors for google test
+addenv GTEST_COLOR "YES"
+
+# asp (https://github.com/falconindy/asp) -- for Arch Linux
+addenv ASPROOT "$HOME/.asp" asp

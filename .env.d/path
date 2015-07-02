@@ -1,0 +1,3 @@
+# user scripts/programs
+addenv PATH "$HOME/.bin:$PATH" "" "$HOME/.bin"
+addenv PATH "$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH" ruby "$(ruby -rubygems -e "puts Gem.user_dir")/bin"

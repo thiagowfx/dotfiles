@@ -1,0 +1,6 @@
+# generate random password
+_generate-random-password() {
+    dd if=/dev/urandom bs=1 count="${1:-16}" 2>/dev/null | base64
+}
+addtemplate generate-random-password dd
+
