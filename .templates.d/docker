@@ -1,0 +1,54 @@
+_d-cleanup(){
+    docker rm $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+    docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+addtemplate d-cleanup docker
+
+del_stopped(){
+    local name=$1
+    local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
+    if [[ "$state" == "false" ]]; then
+        docker rm $name
+    fi
+}
+
+relies_on(){
+    local containers=$@
+    for container in $containers; do
+        local state=$(docker inspect --format "{{.State.Running}}" $container 2>/dev/null)
+        if [[ "$state" == "false" ]] || [[ "$state" == "" ]]; then
+            echo "$container is not running, starting it for you."
+            $container
+        fi
+    done
+}
+
+###############################
+# containers
+###############################
+
+addcontainer() {
+    addtemplate dc-"$1" docker
+}
+
+_dc-chrome() {
+    del_stopped chrome
+
+    docker run -d \
+        --memory 1gb \
+        --net host \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=unix$DISPLAY \
+        -v $HOME/Downloads:/root/Downloads \
+        -v $HOME/Pictures:/root/Pictures \
+        -v $HOME/.chrome:/data \
+        --device /dev/snd \
+        --device /dev/dri \
+        --device /dev/video0 \
+        --name chrome \
+        jess/chrome --user-data-dir=/data --force-device-scale-factor=1 "$@" 
+
+        exit 0
+}
+addcontainer chrome
