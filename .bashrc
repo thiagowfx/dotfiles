@@ -23,14 +23,13 @@ complete -cf sudo
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
 # set prompt
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
-
-# add git to prompt
 git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
-PS1="\[\e[0;32m\]\$(git_branch)\[\e[m\]$PS1"
+PS1="\[\e[0;32m\]\$(git_branch)\[\e[m\]\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] "
+[[ -f $S/.bash_prompt ]] && . $S/.bash_prompt ]]
 
 # shell options
 set -o emacs
+shopt -s autocd
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
@@ -38,6 +37,7 @@ shopt -s checkjobs
 shopt -s dotglob
 shopt -s expand_aliases
 shopt -s extglob
+shopt -s globstar
 shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
