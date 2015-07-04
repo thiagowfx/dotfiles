@@ -1,0 +1,10 @@
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+_o() {
+    if [ $# -eq 0 ]; then
+        xdg-open .  > /dev/null 2>&1
+    else
+        xdg-open "$@" > /dev/null 2>&1
+    fi
+}
+addtemplate o xdg-open

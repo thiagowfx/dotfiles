@@ -1,7 +1,10 @@
 # less: with colors
 addenv LESS "-R" less
 
-# enable colors for google test
+# don't clear the screen
+addenv MANPAGER "less -X" less
+
+# google test with colors
 addenv GTEST_COLOR "YES"
 
 # asp (https://github.com/falconindy/asp) -- for Arch Linux

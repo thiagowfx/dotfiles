@@ -7,8 +7,10 @@
 S="$(dirname $(readlink -f "$0"))"
 [[ -f $S/.alias ]] && . $S/.alias
 
-# bash: don't add two equal consecutive commands in bash history (add just one)
-export HISTCONTROL="ignoreboth"
+export HISTCONTROL="ignoreboth" # ignorespace and ignoredups
+export HISTSIZE=50000000;
+export HISTFILESIZE=$HISTSIZE;
+export HISTIGNORE="ls:cd:cd -:cd ~:pwd:exit:date:* --help";
 
 # autojump: debian; arch
 [[ -f /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
