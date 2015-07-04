@@ -7,10 +7,10 @@
 	helper = store
 [alias]
 	d = diff
-	l = commit -a -m "update"
+	dc = diff --cached
+    l = commit -a -m
 	p = push
 	st = status
-    # TODO: https://github.com/jfrazelle/dotfiles/blob/master/.gitconfig#L52
 [core]
 	autocrlf = input
 [color]
