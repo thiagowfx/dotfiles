@@ -8,7 +8,7 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 ! xterm settings
-xterm*background: #000000
+xterm*background: #111111
 xterm*foreground: #ffffff
 
 ! urxvt settings

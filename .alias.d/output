@@ -1,36 +1,18 @@
-# more verbose curl
+alias cp="cp -v"
+alias ln="ln -v"
+alias mv="mv -v"
+addalias chmod "chmod -v" chmod
+addalias chown "chown -v" chown
 addalias curl "curl -v -L" curl
-
-# unified diff output
-addalias diff "diff -uN" diff
-
-# more human df
 addalias df "df -h" df
-
-# more human du
 addalias du "du -h" du
-
-# pstree with PIDs
 addalias pstree "pstree -p" pstree
-
-# canonical hexdump output
 addalias hexdump "hexdump -C" hexdump
-
-# colored grep
 addalias grep "grep --color=always" grep
-
-# more human free
 addalias free "free -h" free
-
-# if colordiff is present, colored and unified diff output
+addalias diff "diff -uN" diff
 addalias diff "colordiff -uN" colordiff
 addalias colordiff "colordiff -uN" colordiff
-
-# more useful xclip
-addalias xclip "xclip -selection clipboard" xclip
-
-# more verbose netstat
 addalias netstat "netstat -pln" netstat
-
-# more intuitive pgrep
 addalias pgrep "pgrep -fl" pgrep
+addalias ls "ls -F --color=always" ls

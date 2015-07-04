@@ -1,5 +1,0 @@
-# simple HTTP web server for files in current directory
-_httpserver() {
-    python2 -m SimpleHTTPServer "${1:-7777}"
-}
-addtemplate httpserver python2

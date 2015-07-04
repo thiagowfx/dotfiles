@@ -3,8 +3,7 @@
 command -v mate-terminal &>/dev/null && export TERMINAL="mate-terminal"
 
 # GnuPG: password only once per session
-export GPG_TTY=$(tty)
-export GPG_AGENT_INFO=""
+export GPG_TTY=$(tty) GPG_AGENT_INFO=""
 
 # Keychain: ssh-agent autostart
 # eval $(keychain --agents ssh --eval -Q --quiet id_dsa id_rsa)

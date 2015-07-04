@@ -51,7 +51,6 @@ addtemplate() {
 }
 
 S="$(dirname $(readlink -f "$0"))"
-
 for f in $S/.{alias,env,templates}.d/*
 do
 	source $f

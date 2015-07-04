@@ -4,10 +4,14 @@
 [[ $- != *i* ]] && return
 
 # aliases
-[[ -f $HOME/.alias ]] && source $HOME/.alias
-alias ls="ls -F --color=always"
+S="$(dirname $(readlink -f "$0"))"
+[[ -f $S/.alias ]] && . $S/.alias
 
-# autojump
+# bash: don't add two equal consecutive commands in bash history (add just one)
+export HISTCONTROL="ignoreboth"
+
+# autojump: debian; arch
+[[ -f /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
 [[ -f /etc/profile.d/autojump.bash ]] && source /etc/profile.d/autojump.bash
 
 # system bashrc and completion for sudo
@@ -15,7 +19,7 @@ alias ls="ls -F --color=always"
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 complete -cf sudo
 
-# command-not-found hook for Arch Linux / pacman
+# command-not-found hook: arch
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
 # set prompt
