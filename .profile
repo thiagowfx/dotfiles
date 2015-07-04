@@ -1,6 +1,6 @@
 #!/bin/sh
 
-command -v lxterminal &>/dev/null && export TERMINAL="lxterminal"
+command -v mate-terminal &>/dev/null && export TERMINAL="mate-terminal"
 
 # GnuPG: password only once per session
 export GPG_TTY=$(tty)
