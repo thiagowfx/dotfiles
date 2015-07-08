@@ -1,2 +1,2 @@
-include orange.theme
+include base16light.theme
 set selection-clipboard clipboard
