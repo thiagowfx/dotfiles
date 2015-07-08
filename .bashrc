@@ -21,6 +21,9 @@ export HISTIGNORE="ls:cd:cd -:cd ~:pwd:exit:date:* --help";
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 complete -cf sudo
 
+# colors
+[[ -f $S/.base16-atelierlakeside.dark.sh ]] && source $S/.base16-atelierlakeside.dark.sh
+
 # command-not-found hook: arch
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 

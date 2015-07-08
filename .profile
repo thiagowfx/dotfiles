@@ -1,7 +1,5 @@
 #!/bin/sh
 
-command -v mate-terminal &>/dev/null && export TERMINAL="mate-terminal"
-
 # GnuPG: password only once per session
 export GPG_TTY=$(tty) GPG_AGENT_INFO=""
 

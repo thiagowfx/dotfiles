@@ -31,9 +31,24 @@ addcontainer() {
     addtemplate dc-"$1" docker
 }
 
-# _dc-chrome() {
-    # del_stopped chrome
-    # docker run ...
-    # exit 0
-# }
-# addcontainer chrome
+_dc-chromium(){
+    del_stopped chromium
+
+    docker run -d \
+        --memory 1gb \
+        --net host \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=$DISPLAY \
+        -v $HOME/Downloads:/root/Downloads \
+        -v $HOME/Pictures:/root/Pictures \
+        -v $HOME/.chromium:/data \
+        --device /dev/snd \
+        --device /dev/dri \
+        --name chromium \
+        jess/chromium "$@"
+
+    # exit current shell
+    exit 0
+}
+addcontainer chromium

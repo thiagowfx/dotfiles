@@ -6,10 +6,10 @@
 #
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
+    for f in /etc/X11/xinit/xinitrc.d/*; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
 fi
 
 #
@@ -24,61 +24,75 @@ fi
 #   $3: an optional file (full-path) (e.g. $HOME/.vimrc)
 #
 startprog() {
-  [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
-  command -v pidof &>/dev/null && pidof "$2" &>/dev/null && return
-  [[ "x$3" != "x" ]] && [ ! -e "$3" ] && return
-  eval "$1" &
+    [[ "x$2" != "x" ]] && ! command -v "$2" &>/dev/null && return
+    command -v pidof &>/dev/null && pidof "$2" &>/dev/null && return
+    [[ "x$3" != "x" ]] && [ ! -e "$3" ] && return
+    eval "$1" &
 }
 
-# pulseaudio
-startprog "start-pulseaudio-x11" start-pulseaudio-x11
+tiling_arch() {
+    # X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
+    startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
 
-# redshift (color temperature adjustment)
-startprog "redshift -l -23:-43" redshift
+    # syndaemon: no touchpad clicking while typing
+    startprog "syndaemon -i 1 -t -k -d" syndaemon
 
-# network manager applet
-startprog "nm-applet" nm-applet
+    # unclutter: hide the mouse when it gets idle for a while
+    startprog "unclutter" unclutter
 
-# syndaemon: no touchpad clicking while typing
-startprog "syndaemon -i 1 -t -k -d" syndaemon
+    # Xresources
+    startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
 
-# unclutter: hide the mouse when it gets idle for a while
-startprog "unclutter" unclutter
+    # X11 clipboard syncing
+    # startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
+    startprog "parcellite" parcellite
 
-# feh: set desktop background
-startprog "sh $HOME/.fehbg" feh "$HOME/.fehbg"
+    # pulseaudio
+    startprog "start-pulseaudio-x11" start-pulseaudio-x11
 
-# Xresources
-startprog "xrdb -merge $HOME/.Xresources" xrdb "$HOME/.Xresources"
+    # compositing manager
+    startprog "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55" xcompmgr
 
-# Xmodmap
-startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
+    # redshift (color temperature adjustment)
+    startprog "redshift -l -23:-43" redshift
 
-# X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
-startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
+    # network manager applet
+    startprog "nm-applet" nm-applet
 
-# X11 clipboard syncing
-# startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
-startprog "parcellite" parcellite
+    # Xmodmap
+    startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
+
+    # feh: set desktop background
+    startprog "sh $HOME/.fehbg" feh "$HOME/.fehbg"
+}
+
+i3_arch() {
+    echo
+}
+
+bspwm_arch() {
+    # bind keys
+    startprog "sxhkd" sxhkd
+}
 
 # WM: The window manager to be started.
 WM=${WM:-i3}
 
 case $WM in
-  awesome           ) exec awesome;;
-  bspwm             ) exec bspwm;;
-  cinnamon          ) exec cinnamon-session;;
-  dwm               ) exec dwm;;
-  e17|enlightenment ) exec enlightenment_start;;
-  fluxbox           ) exec startfluxbox;;
-  gnome             ) exec gnome-session;;
-  i3|i3wm           ) exec i3;;
-  kde               ) exec startkde;;
-  lxde              ) exec startlxde;;
-  mate              ) exec mate-session;;
-  openbox           ) exec openbox-session;;
-  unity             ) exec unity;;
-  xfce|xfce4        ) exec startxfce4;;
-  xmonad            ) exec xmonad;;
-  *                 ) exec "$WM";;
+    awesome           ) exec awesome;;
+    bspwm             ) tiling_arch; bspwm_arch; exec bspwm;;
+    cinnamon          ) exec cinnamon-session;;
+    dwm               ) exec dwm;;
+    e17|enlightenment ) exec enlightenment_start;;
+    fluxbox           ) exec startfluxbox;;
+    gnome             ) exec gnome-session;;
+    i3|i3wm           ) tiling_arch; i3_arch; exec i3;;
+    kde               ) exec startkde;;
+    lxde              ) exec startlxde;;
+    mate              ) exec mate-session;;
+    openbox           ) exec openbox-session;;
+    unity             ) exec unity;;
+    xfce|xfce4        ) exec startxfce4;;
+    xmonad            ) exec xmonad;;
+    *                 ) tiling_arch; exec "$WM";;
 esac

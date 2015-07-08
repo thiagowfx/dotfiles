@@ -7,6 +7,9 @@
 S="$(dirname $(readlink -f "$0"))"
 [[ -f $S/.alias ]] && . $S/.alias
 
+# colors
+[[ -f $S/.base16-atelierlakeside.dark.sh ]] && source $S/.base16-atelierlakeside.dark.sh
+
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE
 
