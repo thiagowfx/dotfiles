@@ -6,7 +6,8 @@
 [credential]
 	helper = store
 [alias]
-    c = commit
+    ca = commit --amend
+    c = commit -m
 	d = diff
 	dc = diff --cached
     l = commit -a -m

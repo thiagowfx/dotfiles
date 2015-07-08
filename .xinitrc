@@ -30,9 +30,6 @@ startprog() {
   eval "$1" &
 }
 
-# compton (desktop composition)
-startprog "compton -b" compton
-
 # pulseaudio
 startprog "start-pulseaudio-x11" start-pulseaudio-x11
 
