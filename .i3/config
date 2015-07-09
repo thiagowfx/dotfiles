@@ -100,7 +100,7 @@ bindsym $mod+b focus child
 #
 # focus_follows_mouse no
 hide_edge_borders vertical
-floating_maximum_size 1024 x 768
+# floating_maximum_size 1024 x 768
 workspace_auto_back_and_forth yes
 
 # switch to next workspace

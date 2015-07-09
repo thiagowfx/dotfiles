@@ -3,4 +3,5 @@ addpath() {
 }
 
 addpath "$HOME/.bin" "" "$HOME/.bin"
+addpath "/usr/lib/ccache/bin" "/usr/lib/ccache/bin"
 command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
