@@ -1,0 +1,13 @@
+# pins.d for the win!
+PINS_DIR="$HOME/.pins.d/"
+
+_p() {
+
+    if [ $# -eq 0 ]; then
+        cd "$PINS_DIR"
+    else
+        local SEARCH="$@"
+        find "$PINS_DIR" -iname "*$SEARCH*" | sed 's/ /\\ /g' | sort -f | dmenu -i -l 20 -nb '#2e3436' -nf '#9999CC' | xargs vim
+    fi
+}
+addtemplate p
