@@ -1,11 +1,8 @@
-# quit from bspwm
-super + alt + Escape
+super + shift + q
 	pkill -x panel; bspc quit
 
-# start a terminal
 super + Return
     i3-sensible-terminal
 
-# dmenu
 super + d
     dmenu_run
